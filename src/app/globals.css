@@ -1,0 +1,17 @@
+body {
+  background-color: #e0f7fa;
+  min-height: 100vh;
+  display: flex;
+}
+
+.content {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.content > div {
+  flex: 1;
+}
