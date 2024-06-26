@@ -12,7 +12,7 @@ export default function Content() {
       <div className={styles.container + " container shadow"}>
         <div className={"row"}>
           <div className={"col"}>
-            <FaceSelector></FaceSelector>
+            <FaceSelector />
             <ThreadColorOverview />
             <FileButtons />
           </div>
