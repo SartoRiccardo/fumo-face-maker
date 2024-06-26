@@ -1,0 +1,11 @@
+.button {
+  font-size: 2rem;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.inner {
+  height: 100%;
+}
