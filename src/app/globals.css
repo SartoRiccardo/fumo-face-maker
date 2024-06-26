@@ -15,3 +15,9 @@ body {
 .content > div {
   flex: 1;
 }
+
+.panel {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 0.4rem;
+}
