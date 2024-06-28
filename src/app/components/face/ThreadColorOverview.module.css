@@ -1,0 +1,11 @@
+.info {
+  color: rgb(46, 203, 255);
+  font-size: 1.5rem;
+  transition: color 0.2s;
+}
+
+.info:hover {
+  cursor: pointer;
+  color: blue;
+  transition: color 0.2s;
+}

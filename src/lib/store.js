@@ -11,6 +11,6 @@ export const makeStore = () => {
   });
 };
 
-export const useAppDispatch = useDispatch.withTypes();
-export const useAppSelector = useSelector.withTypes();
-export const useAppStore = useStore.withTypes();
+export const useAppDispatch = useDispatch; //.withTypes();
+export const useAppSelector = useSelector; //.withTypes();
+export const useAppStore = useStore; //.withTypes();

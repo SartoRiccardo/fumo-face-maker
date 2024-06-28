@@ -8,6 +8,8 @@ export const fumoFaceSlice = createSlice({
     blush: 0,
     mouth: 0,
     hasBlush: false,
+    hasHeterochromia: false,
+    hasDifferentEyeOutline: false,
     accessories: [],
   },
   reducers: {
@@ -34,6 +36,12 @@ export const fumoFaceSlice = createSlice({
     },
     setAccessories: (state, { payload }) => {
       state.accessories = payload.accessories;
+    },
+    setHasHeterochromia: (state, { payload }) => {
+      state.hasHeterochromia = payload.hasHeterochromia;
+    },
+    setHasDifferentEyeOutline: (state, { payload }) => {
+      state.hasDifferentEyeOutline = payload.hasDifferentEyeOutline;
     },
   },
 });
