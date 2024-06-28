@@ -4,12 +4,17 @@ export const fumoFaceSlice = createSlice({
   name: "fumoFace",
   initialState: {
     eyebrows: 0,
+    eyebrow2: 0,
     eyes: 0,
+    eye2: 0,
     blush: 0,
     mouth: 0,
     hasBlush: false,
     hasHeterochromia: false,
     hasDifferentEyeOutline: false,
+    // hasGradient: false,
+    hasDifferentEyebrows: false,
+    hasDifferentEyes: false,
     accessories: [],
   },
   reducers: {
@@ -22,8 +27,14 @@ export const fumoFaceSlice = createSlice({
     setEyebrows: (state, { payload }) => {
       state.eyebrows = payload.eyebrows;
     },
+    setOtherEyebrow: (state, { payload }) => {
+      state.eyebrow2 = payload.eyebrow2;
+    },
     setEyes: (state, { payload }) => {
       state.eyes = payload.eyes;
+    },
+    setOtherEye: (state, { payload }) => {
+      state.eye2 = payload.eye2;
     },
     setBlush: (state, { payload }) => {
       state.blush = payload.blush;
@@ -42,6 +53,15 @@ export const fumoFaceSlice = createSlice({
     },
     setHasDifferentEyeOutline: (state, { payload }) => {
       state.hasDifferentEyeOutline = payload.hasDifferentEyeOutline;
+    },
+    setHasDifferentEyebrows: (state, { payload }) => {
+      state.hasDifferentEyebrows = payload.hasDifferentEyebrows;
+    },
+    setHasDifferentEyes: (state, { payload }) => {
+      state.hasDifferentEyes = payload.hasDifferentEyes;
+    },
+    setHasGradient: (state, { payload }) => {
+      state.hasGradient = payload.hasGradient;
     },
   },
 });
@@ -145,5 +165,12 @@ export const {
   setEyes,
   setBlush,
   setMouth,
+  setHasDifferentEyebrows,
+  setHasDifferentEyes,
+  setOtherEyebrow,
+  setOtherEye,
+  setHasHeterochromia,
+  setHasDifferentEyeOutline,
+  // setHasGradient,
 } = fumoFaceSlice.actions;
 export default fumoFaceSlice.reducer;
