@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 export const fumoFaceSlice = createSlice({
   name: "fumoFace",
@@ -46,7 +46,96 @@ export const fumoFaceSlice = createSlice({
   },
 });
 
-export const selectThreadColors = (state) => {};
+const threadColorSelector = (fumoFace) => {
+  let threadColors = [
+    {
+      color: "white",
+      description: (
+        <>
+          The color of the little eye shine on the top left of each eye.{" "}
+          <b>You should keep it white.</b>
+        </>
+      ),
+    },
+  ];
+
+  if (fumoFace.hasHeterochromia) {
+    threadColors.splice(
+      0,
+      0,
+      {
+        color: "red",
+        description: (
+          <>
+            The color of the <b>left</b> eye. Can be any color you want.
+          </>
+        ),
+      },
+      {
+        color: "blue",
+        description: (
+          <>
+            The color of the <b>right</b> eye. Can be any color you want.
+          </>
+        ),
+      }
+    );
+  } else {
+    threadColors.splice(0, 0, {
+      color: "red",
+      description: <>The color of the eyes. Can be any color you want.</>,
+    });
+  }
+
+  if (fumoFace.hasDifferentEyeOutline) {
+    if (fumoFace.hasHeterochromia) {
+      threadColors.push(
+        {
+          color: "darkred",
+          description: (
+            <>
+              The color of the outline of the <b>left</b> eye. Can be any color
+              you want.
+            </>
+          ),
+        },
+        {
+          color: "darkblue",
+          description: (
+            <>
+              The color of the outline of the <b>right</b> eye. Can be any color
+              you want.
+            </>
+          ),
+        }
+      );
+    } else {
+      threadColors.push({
+        color: "darkred",
+        description: (
+          <>The color of the outline of the eyes. Can be any color you want.</>
+        ),
+      });
+    }
+  }
+
+  threadColors.push({
+    color: "black",
+    description: (
+      <>
+        The color of the eyebrows and mouth. <b>You should keep it black.</b>
+      </>
+    ),
+  });
+
+  return threadColors;
+};
+
+export const selectFumoFace = (state) => state.fumoFace;
+export const selectThreadColors = createSelector(
+  [selectFumoFace],
+  threadColorSelector
+);
 
 export const {
   setCombination,

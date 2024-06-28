@@ -9,7 +9,7 @@ import FileButtons from "./controls/FileButtons";
 export default function Content() {
   return (
     <div className={styles.container_wrap + " py-sm-2"}>
-      <div className={styles.container + " container shadow"}>
+      <div className={styles.container + " container"}>
         <div className={"row"}>
           <div className={"col"}>
             <FaceSelector />

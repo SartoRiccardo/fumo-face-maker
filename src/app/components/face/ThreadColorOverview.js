@@ -2,22 +2,13 @@
 import styles from "./ThreadColorOverview.module.css";
 import ThreadColor from "./ThreadColor";
 import { useAppSelector } from "@/lib/store";
+import { selectThreadColors } from "@/features/fumoFaceSlice";
 import { useState } from "react";
 import ThreadColorInfo from "./ThreadColorInfo";
 import { atma } from "@/lib/fonts";
 
 export default function ThreadColorOverview() {
-  const fumoFace = useAppSelector((state) => state.fumoFace);
-  let threadColors = [];
-  threadColors.push("red");
-  if (fumoFace.hasHeterochromia) threadColors.push("blue");
-  threadColors.push("white");
-  if (fumoFace.hasDifferentEyeOutline) {
-    threadColors.push("darkred");
-    if (fumoFace.hasHeterochromia) threadColors.push("darkblue");
-  }
-  threadColors.push("black");
-
+  const threadColors = useAppSelector(selectThreadColors);
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -30,8 +21,8 @@ export default function ThreadColorOverview() {
             </div>
           </div>
           <div className={"col"}>
-            {threadColors.map((col) => (
-              <ThreadColor key={col} color={col} />
+            {threadColors.map(({ color }) => (
+              <ThreadColor key={color} color={color} />
             ))}
           </div>
           <div className={"col-auto"}>
