@@ -40,7 +40,11 @@ export default function ThreadColorInfo({ show, onHide }) {
           </div>
         ))}
       </Modal.Body>
-      <Modal.Footer>Ok</Modal.Footer>
+      <Modal.Footer>
+        <button type="button" className={"btn btn-primary"} onClick={onHide}>
+          Got it
+        </button>
+      </Modal.Footer>
     </Modal>
   );
 }
