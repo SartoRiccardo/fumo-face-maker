@@ -46,6 +46,8 @@ export const fumoFaceSlice = createSlice({
   },
 });
 
+export const selectThreadColors = (state) => {};
+
 export const {
   setCombination,
   setHasBlush,
