@@ -21,3 +21,7 @@ body {
   padding: 1rem;
   border-radius: 0.4rem;
 }
+
+.h-100 {
+  height: 100%;
+}
