@@ -1,11 +1,16 @@
 import styles from "./OptionShift.module.css";
+import { onSpacePress } from "@/app/utils/events";
 
 export default function OptionShift({ children, options, onChange, value }) {
   return (
     <div className={"row"}>
       <div
+        tabIndex={0}
         className={"col-auto"}
         onClick={(_e) => onChange((value - 1 + options) % options)}
+        onKeyDown={onSpacePress((_e) =>
+          onChange((value - 1 + options) % options)
+        )}
       >
         <i className={styles.button + " bi-chevron-left"}></i>
       </div>
@@ -17,8 +22,10 @@ export default function OptionShift({ children, options, onChange, value }) {
         </div>
       </div>
       <div
+        tabIndex={0}
         className={"col-auto"}
         onClick={(_e) => onChange((value + 1) % options)}
+        onKeyDown={onSpacePress((_e) => onChange((value + 1) % options))}
       >
         <i className={styles.button + " bi-chevron-right"}></i>
       </div>

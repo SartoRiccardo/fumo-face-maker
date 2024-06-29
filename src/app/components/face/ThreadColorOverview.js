@@ -6,6 +6,7 @@ import { selectThreadColors } from "@/features/fumoFaceSlice";
 import { useState } from "react";
 import ThreadColorInfo from "./ThreadColorInfo";
 import { atma } from "@/lib/fonts";
+import { onSpacePress } from "@/app/utils/events";
 
 export default function ThreadColorOverview() {
   const threadColors = useAppSelector(selectThreadColors);
@@ -29,8 +30,10 @@ export default function ThreadColorOverview() {
             <div className={"d-flex flex-column justify-content-center h-100"}>
               <p className={"my-0"}>
                 <i
+                  tabIndex={0}
                   className={styles.info + " bi-info-circle-fill"}
                   onClick={(_e) => setShowModal(true)}
+                  onKeyDown={onSpacePress((_e) => setShowModal(true))}
                 ></i>
               </p>
             </div>

@@ -13,7 +13,6 @@ import {
 export default function FaceControls() {
   const fumoFace = useAppSelector(selectFumoFace);
   const dispatch = useAppDispatch();
-  console.log(fumoFace.hasHeterochromia);
 
   return (
     <div className={"panel shadow"}>
