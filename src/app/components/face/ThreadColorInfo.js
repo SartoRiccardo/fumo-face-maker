@@ -11,6 +11,7 @@ export default function ThreadColorInfo({ show, onHide }) {
   return (
     <Modal show={show} onHide={onHide} size="lg">
       <Modal.Body>
+        <h3 className={" text-center"}>Thread Color Order</h3>
         <p>
           This is the order of the thread colors you should use when
           embroidering the file. This website uses red and blue as the color of
@@ -24,7 +25,6 @@ export default function ThreadColorInfo({ show, onHide }) {
           put the threads in the correct order you'll be fine.
         </p>
         <hr />
-        <h3 className={" text-center"}>Thread Color Order</h3>
         {threadColors.map(({ color, description }) => (
           <div className={"row"} key={color}>
             <div className={"col-auto"}>
