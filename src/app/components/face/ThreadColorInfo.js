@@ -25,8 +25,8 @@ export default function ThreadColorInfo({ show, onHide }) {
           put the threads in the correct order you'll be fine.
         </p>
         <hr />
-        {threadColors.map(({ color, description }) => (
-          <div className={"row"} key={color}>
+        {threadColors.map(({ color, description }, i) => (
+          <div className={"row"} key={i}>
             <div className={"col-auto"}>
               <ThreadColor color={color} />
             </div>

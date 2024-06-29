@@ -70,6 +70,15 @@ export const fumoFaceSlice = createSlice({
   },
 });
 
+const blackColor = {
+  color: "black",
+  description: (
+    <>
+      The color of the eyebrows and mouth. <b>You should keep it black.</b>
+    </>
+  ),
+};
+
 const threadColorSelector = (fumoFace) => {
   let threadColors = [
     {
@@ -143,14 +152,54 @@ const threadColorSelector = (fumoFace) => {
     }
   }
 
-  threadColors.push({
-    color: "black",
-    description: (
-      <>
-        The color of the eyebrows and mouth. <b>You should keep it black.</b>
-      </>
-    ),
-  });
+  threadColors.push(blackColor);
+
+  // Special multi-color mouths
+  if (fumoFace.mouth === 3) {
+    threadColors.push(
+      {
+        color: "white",
+        description: (
+          <>
+            The color of the mouth's teeth. <b>You should keep it white.</b>
+          </>
+        ),
+      },
+      blackColor
+    );
+  } else if (fumoFace.mouth === 5) {
+    threadColors.push(
+      {
+        color: "white",
+        description: (
+          <>
+            The color of the mouth's teeth. <b>You should keep it white.</b>
+          </>
+        ),
+      },
+      blackColor
+    );
+  } else if (fumoFace.mouth === 10) {
+    threadColors.push(
+      {
+        color: "white",
+        description: (
+          <>
+            The color of the mouth's teeth. <b>You should keep it white.</b>
+          </>
+        ),
+      },
+      {
+        color: "salmon",
+        description: (
+          <>
+            The color inside the mouth. <b>You should keep a pinkish color.</b>
+          </>
+        ),
+      },
+      blackColor
+    );
+  }
 
   return threadColors;
 };

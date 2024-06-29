@@ -10,6 +10,7 @@ import { onSpacePress } from "@/app/utils/events";
 
 export default function ThreadColorOverview() {
   const threadColors = useAppSelector(selectThreadColors);
+  console.log(threadColors);
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -22,8 +23,8 @@ export default function ThreadColorOverview() {
             </div>
           </div>
           <div className={"col"}>
-            {threadColors.map(({ color }) => (
-              <ThreadColor key={color} color={color} />
+            {threadColors.map(({ color }, i) => (
+              <ThreadColor key={i} color={color} />
             ))}
           </div>
           <div className={"col-auto"}>
