@@ -17,5 +17,8 @@
     "react-bootstrap": "^2.10.3",
     "react-dom": "^18",
     "react-redux": "^9.1.2"
+  },
+  "devDependencies": {
+    "@svgr/webpack": "^8.1.0"
   }
 }

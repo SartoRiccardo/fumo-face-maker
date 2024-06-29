@@ -6,7 +6,7 @@ import { selectThreadColors } from "@/features/fumoFaceSlice";
 import { useState } from "react";
 import ThreadColorInfo from "./ThreadColorInfo";
 import { atma } from "@/lib/fonts";
-import { onSpacePress } from "@/app/utils/events";
+import { onSpacePress } from "@/utils/events";
 
 export default function ThreadColorOverview() {
   const threadColors = useAppSelector(selectThreadColors);

@@ -7,6 +7,7 @@ import {
   setBlush,
   setMouth,
 } from "@/features/fumoFaceSlice";
+import Image from "next/image";
 
 const EYEBROWS = ["a", "b", "c"];
 const EYES = ["a", "b", "c"];
@@ -48,6 +49,11 @@ export default function FaceSelector({ faceOptions }) {
         value={fumoFace.mouth}
       >
         Mouth {fumoFace.mouth}
+        <Image
+          src={`/images/mouths/mouth-${fumoFace.mouth + 1}.svg`}
+          width={300}
+          height={100}
+        />
       </OptionShift>
     </div>
   );

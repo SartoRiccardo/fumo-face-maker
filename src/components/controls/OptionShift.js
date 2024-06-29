@@ -1,5 +1,5 @@
 import styles from "./OptionShift.module.css";
-import { onSpacePress } from "@/app/utils/events";
+import { onSpacePress } from "@/utils/events";
 
 export default function OptionShift({ children, options, onChange, value }) {
   return (
