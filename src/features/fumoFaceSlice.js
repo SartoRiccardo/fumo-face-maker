@@ -7,6 +7,7 @@ export const fumoFaceSlice = createSlice({
     eyebrow2: 0,
     eyes: 0,
     eye2: 0,
+    eyelash: 0,
     blush: 0,
     mouth: 0,
     hasBlush: false,
@@ -62,6 +63,9 @@ export const fumoFaceSlice = createSlice({
     },
     setHasGradient: (state, { payload }) => {
       state.hasGradient = payload.hasGradient;
+    },
+    setEyelash: (state, { payload }) => {
+      state.eyelash = payload.eyelash;
     },
   },
 });
@@ -172,5 +176,6 @@ export const {
   setHasHeterochromia,
   setHasDifferentEyeOutline,
   // setHasGradient,
+  setEyelash,
 } = fumoFaceSlice.actions;
 export default fumoFaceSlice.reducer;

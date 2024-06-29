@@ -1,10 +1,11 @@
+"use client";
 import styles from "./content.module.css";
 import FaceControls from "./face/FaceControls";
 import FaceSelector from "./face/FaceSelector";
 import ThreadColorOverview from "./face/ThreadColorOverview";
-import Accordion from "./controls/Accordion";
 import ButtonSelector from "./controls/ButtonSelector";
 import FileButtons from "./controls/FileButtons";
+import Accordion from "react-bootstrap/Accordion";
 
 export default function Content() {
   return (
@@ -18,12 +19,24 @@ export default function Content() {
           </div>
           <div className={"col"}>
             <FaceControls />
-            <Accordion title="Eyelashes">
-              <ButtonSelector multiple />
+
+            <Accordion className={"my-3 shadow"}>
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>Eyelashes</Accordion.Header>
+                <Accordion.Body>
+                  <ButtonSelector />
+                </Accordion.Body>
+              </Accordion.Item>
             </Accordion>
-            <Accordion title="Accessories">
-              <ButtonSelector />
-            </Accordion>
+
+            {/* <Accordion className="shadow">
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>Accessories</Accordion.Header>
+                <Accordion.Body>
+                  <ButtonSelector />
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion> */}
           </div>
         </div>
       </div>
