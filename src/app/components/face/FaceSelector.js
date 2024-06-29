@@ -13,21 +13,21 @@ const EYES = ["a", "b", "c"];
 const BLUSHES = ["a", "b", "c"];
 const MOUTHS = ["a", "b", "c"];
 
-export default function FaceSelector() {
+export default function FaceSelector({ faceOptions }) {
   const fumoFace = useAppSelector((state) => state.fumoFace);
   const dispatch = useAppDispatch();
 
   return (
     <div className={"panel shadow"}>
       <OptionShift
-        options={EYEBROWS.length}
+        options={faceOptions.eyebrows}
         onChange={(eyebrows) => dispatch(setEyebrows({ eyebrows }))}
         value={fumoFace.eyebrows}
       >
         Eyebrows {fumoFace.eyebrows}
       </OptionShift>
       <OptionShift
-        options={EYES.length}
+        options={faceOptions.eyes}
         onChange={(eyes) => dispatch(setEyes({ eyes }))}
         value={fumoFace.eyes}
       >
@@ -35,7 +35,7 @@ export default function FaceSelector() {
       </OptionShift>
       {fumoFace.hasBlush && (
         <OptionShift
-          options={BLUSHES.length}
+          options={faceOptions.blushes}
           onChange={(blush) => dispatch(setBlush({ blush }))}
           value={fumoFace.blush}
         >
@@ -43,7 +43,7 @@ export default function FaceSelector() {
         </OptionShift>
       )}
       <OptionShift
-        options={MOUTHS.length}
+        options={faceOptions.mouths}
         onChange={(mouth) => dispatch(setMouth({ mouth }))}
         value={fumoFace.mouth}
       >
