@@ -8,4 +8,26 @@
 
 .inner {
   height: 100%;
+  position: relative;
+}
+
+.inner p {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  text-shadow: 1px 1px 0 white, -1px 1px 0 white, -1px -1px 0 white,
+    1px -1px 0 white;
+  animation-name: fade;
+  animation-duration: 1s;
+  opacity: 0;
+}
+
+@keyframes fade {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }

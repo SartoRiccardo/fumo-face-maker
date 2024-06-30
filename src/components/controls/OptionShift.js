@@ -1,5 +1,6 @@
 import styles from "./OptionShift.module.css";
 import { onSpacePress } from "@/utils/events";
+import { atma } from "@/lib/fonts";
 
 export default function OptionShift({ children, options, onChange, value }) {
   return (
@@ -23,6 +24,9 @@ export default function OptionShift({ children, options, onChange, value }) {
           <div className={"d-flex justify-content-center flex-column"}>
             {children}
           </div>
+          <p className={`${atma.className} fs-3`} key={value}>
+            {value + 1}/{options}
+          </p>
         </div>
       </div>
       <div
