@@ -8,6 +8,7 @@ import {
   setBlush,
   setMouth,
 } from "@/features/fumoFaceSlice";
+import FaceSelectorPlc from "../placeholders/FaceSelectorPlc";
 import Eyebrow01 from "../../../public/images/eyebrows/eyebrow-1.svg";
 import Eyebrow02 from "../../../public/images/eyebrows/eyebrow-2.svg";
 import Eyebrow03 from "../../../public/images/eyebrows/eyebrow-3.svg";
@@ -35,6 +36,13 @@ import Eye02Lash4 from "../../../public/images/eyes/eye-2-lash4.svg";
 import Eye02Lash5 from "../../../public/images/eyes/eye-2-lash5.svg";
 import Eye02Lash6 from "../../../public/images/eyes/eye-2-lash6.svg";
 import Eye02Lash7 from "../../../public/images/eyes/eye-2-lash7.svg";
+import Eye03Lash1 from "../../../public/images/eyes/eye-3-lash1.svg";
+import Eye03Lash2 from "../../../public/images/eyes/eye-3-lash2.svg";
+import Eye03Lash3 from "../../../public/images/eyes/eye-3-lash3.svg";
+import Eye03Lash4 from "../../../public/images/eyes/eye-3-lash4.svg";
+import Eye03Lash5 from "../../../public/images/eyes/eye-3-lash5.svg";
+import Eye03Lash6 from "../../../public/images/eyes/eye-3-lash6.svg";
+import Eye03Lash7 from "../../../public/images/eyes/eye-3-lash7.svg";
 import Mouth01 from "../../../public/images/mouths/mouth-1.svg";
 import Mouth02 from "../../../public/images/mouths/mouth-2.svg";
 import Mouth03 from "../../../public/images/mouths/mouth-3.svg";
@@ -91,6 +99,15 @@ const EYES = [
     <Eye02Lash6 width={EYE_W} height={EYE_H} />,
     <Eye02Lash7 width={EYE_W} height={EYE_H} />,
   ],
+  [
+    <Eye03Lash1 width={EYE_W} height={EYE_H} />,
+    <Eye03Lash2 width={EYE_W} height={EYE_H} />,
+    <Eye03Lash3 width={EYE_W} height={EYE_H} />,
+    <Eye03Lash4 width={EYE_W} height={EYE_H} />,
+    <Eye03Lash5 width={EYE_W} height={EYE_H} />,
+    <Eye03Lash6 width={EYE_W} height={EYE_H} />,
+    <Eye03Lash7 width={EYE_W} height={EYE_H} />,
+  ],
 ];
 const BLUSHES = ["a", "b", "c"];
 const [MOUTH_W, MOUTH_H] = [300 / 2.5, 100 / 2.5];
@@ -119,8 +136,11 @@ const MOUTHS = [
 export default function FaceSelector({ faceOptions }) {
   const fumoFace = useAppSelector((state) => state.fumoFace);
   const dispatch = useAppDispatch();
+  const isLoading = faceOptions === null;
 
-  return (
+  return isLoading ? (
+    <FaceSelectorPlc />
+  ) : (
     <div className={"panel shadow"}>
       <OptionShift
         options={faceOptions.eyebrows}

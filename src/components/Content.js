@@ -23,7 +23,7 @@ LASH_W = LASH_H = "2rem";
 export default function Content() {
   const fumoFace = useAppSelector(selectFumoFace);
   const dispatch = useAppDispatch();
-  const [faceOptions, setFaceOptions] = useState({});
+  const [faceOptions, setFaceOptions] = useState(null);
   useEffect(() => {
     const getData = async () => {
       const response = await fetch(

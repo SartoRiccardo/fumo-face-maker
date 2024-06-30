@@ -1,0 +1,8 @@
+.faceSelector svg {
+  stroke: gray;
+}
+
+.faceSelector svg path:nth-child(1),
+.faceSelector svg path:nth-child(2) {
+  stroke: lightgray;
+}
