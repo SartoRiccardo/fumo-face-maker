@@ -40,12 +40,21 @@ export default function FileButtons() {
       <Button className={"mx-2"}>
         <i className="bi bi-share" />
       </Button>
-      <Button className={"mx-2"}>
-        <i className="bi bi-github" />
-      </Button>
-      <Button className={"mx-2"}>
-        <i className="bi bi-cup-hot-fill" />
-      </Button>
+
+      <a
+        href="https://github.com/SartoRiccardo/fumo-face-maker"
+        target="_blank"
+      >
+        <Button className={"mx-2"}>
+          <i className="bi bi-github" />
+        </Button>
+      </a>
+
+      <a href="https://ko-fi.com/sarto" target="_blank">
+        <Button className={"mx-2"}>
+          <i className="bi bi-cup-hot-fill" />
+        </Button>
+      </a>
     </div>
   );
 }
