@@ -10,6 +10,17 @@ import {
 } from "@/features/fumoFaceSlice";
 import Eyebrow01 from "../../../public/images/eyebrows/eyebrow-1.svg";
 import Eyebrow02 from "../../../public/images/eyebrows/eyebrow-2.svg";
+import Eyebrow03 from "../../../public/images/eyebrows/eyebrow-3.svg";
+import Eyebrow04 from "../../../public/images/eyebrows/eyebrow-4.svg";
+import Eyebrow05 from "../../../public/images/eyebrows/eyebrow-5.svg";
+import Eyebrow06 from "../../../public/images/eyebrows/eyebrow-6.svg";
+import Eyebrow07 from "../../../public/images/eyebrows/eyebrow-7.svg";
+import Eyebrow08 from "../../../public/images/eyebrows/eyebrow-8.svg";
+import Eyebrow09 from "../../../public/images/eyebrows/eyebrow-9.svg";
+import Eyebrow10 from "../../../public/images/eyebrows/eyebrow-10.svg";
+import Eyebrow11 from "../../../public/images/eyebrows/eyebrow-11.svg";
+import Eyebrow12 from "../../../public/images/eyebrows/eyebrow-12.svg";
+import Eyebrow13 from "../../../public/images/eyebrows/eyebrow-13.svg";
 import Eye01Lash1 from "../../../public/images/eyes/eye-1-lash1.svg";
 import Eye01Lash2 from "../../../public/images/eyes/eye-1-lash2.svg";
 import Eye02Lash1 from "../../../public/images/eyes/eye-2-lash1.svg";
@@ -34,10 +45,21 @@ import Mouth17 from "../../../public/images/mouths/mouth-17.svg";
 import Mouth18 from "../../../public/images/mouths/mouth-18.svg";
 import Mouth19 from "../../../public/images/mouths/mouth-19.svg";
 
-const [EYEBROW_W, EYEBROW_H] = [800 / 2.5, 70 / 2.5];
+const [EYEBROW_W, EYEBROW_H] = [800 / 2.5, 110 / 2.5];
 const EYEBROWS = [
   <Eyebrow01 width={EYEBROW_W} height={EYEBROW_H} />,
   <Eyebrow02 width={EYEBROW_W} height={EYEBROW_H} />,
+  <Eyebrow03 width={EYEBROW_W} height={EYEBROW_H} />,
+  <Eyebrow04 width={EYEBROW_W} height={EYEBROW_H} />,
+  <Eyebrow05 width={EYEBROW_W} height={EYEBROW_H} />,
+  <Eyebrow06 width={EYEBROW_W} height={EYEBROW_H} />,
+  <Eyebrow07 width={EYEBROW_W} height={EYEBROW_H} />,
+  <Eyebrow08 width={EYEBROW_W} height={EYEBROW_H} />,
+  <Eyebrow09 width={EYEBROW_W} height={EYEBROW_H} />,
+  <Eyebrow10 width={EYEBROW_W} height={EYEBROW_H} />,
+  <Eyebrow11 width={EYEBROW_W} height={EYEBROW_H} />,
+  <Eyebrow12 width={EYEBROW_W} height={EYEBROW_H} />,
+  <Eyebrow13 width={EYEBROW_W} height={EYEBROW_H} />,
 ];
 const [EYE_W, EYE_H] = [300 * 1.2, 100 * 1.2];
 const EYES = [
