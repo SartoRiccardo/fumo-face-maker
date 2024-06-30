@@ -38,3 +38,21 @@ h5,
 h6 {
   font-family: var(--font-atma);
 }
+
+.accordion-button:not(.collapsed) {
+  background-color: #80deea;
+  color: black;
+}
+
+.accordion-button.collapsed {
+  background-color: #80deea;
+}
+
+.accordion-button:hover:not(:disabled) {
+  background-color: #00b8d4;
+}
+
+.hmm {
+  border-bottom-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
