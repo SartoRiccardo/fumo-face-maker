@@ -7,8 +7,22 @@ import ButtonSelector from "./controls/ButtonSelector";
 import FileButtons from "./controls/FileButtons";
 import Accordion from "react-bootstrap/Accordion";
 import { useEffect, useState } from "react";
+import Lash1 from "../../public/images/eyelashes/lash-1.svg";
+import Lash2 from "../../public/images/eyelashes/lash-2.svg";
+import { useAppDispatch, useAppSelector } from "@/lib/store";
+import { selectFumoFace, setEyelash } from "@/features/fumoFaceSlice";
+import Button from "./controls/Button";
+
+let LASH_W, LASH_H;
+LASH_W = LASH_H = "2rem";
+const EYELASHES = [
+  <Lash1 width={LASH_W} height={LASH_H} />,
+  <Lash2 width={LASH_W} height={LASH_H} />,
+];
 
 export default function Content() {
+  const fumoFace = useAppSelector(selectFumoFace);
+  const dispatch = useAppDispatch();
   const [faceOptions, setFaceOptions] = useState({});
   useEffect(() => {
     const getData = async () => {
@@ -36,7 +50,24 @@ export default function Content() {
               <Accordion.Item eventKey="0">
                 <Accordion.Header>Eyelashes</Accordion.Header>
                 <Accordion.Body>
-                  <ButtonSelector />
+                  <ButtonSelector
+                    onChange={(eyelash) => dispatch(setEyelash({ eyelash }))}
+                    value={fumoFace.eyelash}
+                  >
+                    <Lash1 width={LASH_W} height={LASH_H} />
+                    <Lash2 width={LASH_W} height={LASH_H} />
+                  </ButtonSelector>
+                  {/* <ButtonSelector>
+                    {EYELASHES.map((eyelash, i) => (
+                      <Button
+                        className={"mx-2 shadow border"}
+                        key={i}
+                        onClick={(_e) => dispatch(setEyelash({ eyelash: i }))}
+                      >
+                        {eyelash}
+                      </Button>
+                    ))}
+                  </ButtonSelector> */}
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
