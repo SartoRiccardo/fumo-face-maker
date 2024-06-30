@@ -4,6 +4,8 @@ import { useAppSelector } from "@/lib/store";
 import ThreadColor from "./ThreadColor";
 import { selectThreadColors } from "@/features/fumoFaceSlice";
 import { atma } from "@/lib/fonts";
+import Button from "../controls/Button";
+import { DropdownButton } from "react-bootstrap";
 
 export default function ThreadColorInfo({ show, onHide }) {
   const threadColors = useAppSelector(selectThreadColors);
@@ -41,9 +43,9 @@ export default function ThreadColorInfo({ show, onHide }) {
         ))}
       </Modal.Body>
       <Modal.Footer>
-        <button type="button" className={"btn btn-primary"} onClick={onHide}>
+        <Button className={"primary"} onClick={onHide}>
           Got it
-        </button>
+        </Button>
       </Modal.Footer>
     </Modal>
   );
