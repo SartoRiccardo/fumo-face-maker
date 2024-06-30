@@ -9,6 +9,11 @@ import Accordion from "react-bootstrap/Accordion";
 import { useEffect, useState } from "react";
 import Lash1 from "../../public/images/eyelashes/lash-1.svg";
 import Lash2 from "../../public/images/eyelashes/lash-2.svg";
+import Lash3 from "../../public/images/eyelashes/lash-3.svg";
+import Lash4 from "../../public/images/eyelashes/lash-4.svg";
+import Lash5 from "../../public/images/eyelashes/lash-5.svg";
+import Lash6 from "../../public/images/eyelashes/lash-6.svg";
+import Lash7 from "../../public/images/eyelashes/lash-7.svg";
 import { useAppDispatch, useAppSelector } from "@/lib/store";
 import { selectFumoFace, setEyelash } from "@/features/fumoFaceSlice";
 
@@ -51,6 +56,11 @@ export default function Content() {
                   >
                     <Lash1 width={LASH_W} height={LASH_H} />
                     <Lash2 width={LASH_W} height={LASH_H} />
+                    <Lash3 width={LASH_W} height={LASH_H} />
+                    <Lash4 width={LASH_W} height={LASH_H} />
+                    <Lash5 width={LASH_W} height={LASH_H} />
+                    <Lash6 width={LASH_W} height={LASH_H} />
+                    <Lash7 width={LASH_W} height={LASH_H} />
                   </ButtonSelector>
                 </Accordion.Body>
               </Accordion.Item>

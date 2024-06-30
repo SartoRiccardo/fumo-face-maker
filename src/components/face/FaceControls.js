@@ -51,14 +51,14 @@ export default function FaceControls() {
       >
         <p>Heterochromia</p>
       </OptionCheckbox>
-      {/* <OptionCheckbox
+      <OptionCheckbox
         value={fumoFace.hasDifferentEyeOutline}
         onChange={(hasDifferentEyeOutline) =>
           dispatch(setHasDifferentEyeOutline({ hasDifferentEyeOutline }))
         }
       >
         <p>Different Eye Outline Color</p>
-      </OptionCheckbox> */}
+      </OptionCheckbox>
       {/* <OptionOnOff onChange={(hasGradient) => dispatch(setHasGradient({hasGradient}))}>
         <p>Gradient Eyes</p>
       </OptionOnOff> */}

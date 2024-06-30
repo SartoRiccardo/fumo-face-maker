@@ -23,8 +23,18 @@ import Eyebrow12 from "../../../public/images/eyebrows/eyebrow-12.svg";
 import Eyebrow13 from "../../../public/images/eyebrows/eyebrow-13.svg";
 import Eye01Lash1 from "../../../public/images/eyes/eye-1-lash1.svg";
 import Eye01Lash2 from "../../../public/images/eyes/eye-1-lash2.svg";
+import Eye01Lash3 from "../../../public/images/eyes/eye-1-lash3.svg";
+import Eye01Lash4 from "../../../public/images/eyes/eye-1-lash4.svg";
+import Eye01Lash5 from "../../../public/images/eyes/eye-1-lash5.svg";
+import Eye01Lash6 from "../../../public/images/eyes/eye-1-lash6.svg";
+import Eye01Lash7 from "../../../public/images/eyes/eye-1-lash7.svg";
 import Eye02Lash1 from "../../../public/images/eyes/eye-2-lash1.svg";
 import Eye02Lash2 from "../../../public/images/eyes/eye-2-lash2.svg";
+import Eye02Lash3 from "../../../public/images/eyes/eye-2-lash3.svg";
+import Eye02Lash4 from "../../../public/images/eyes/eye-2-lash4.svg";
+import Eye02Lash5 from "../../../public/images/eyes/eye-2-lash5.svg";
+import Eye02Lash6 from "../../../public/images/eyes/eye-2-lash6.svg";
+import Eye02Lash7 from "../../../public/images/eyes/eye-2-lash7.svg";
 import Mouth01 from "../../../public/images/mouths/mouth-1.svg";
 import Mouth02 from "../../../public/images/mouths/mouth-2.svg";
 import Mouth03 from "../../../public/images/mouths/mouth-3.svg";
@@ -66,10 +76,20 @@ const EYES = [
   [
     <Eye01Lash1 width={EYE_W} height={EYE_H} />,
     <Eye01Lash2 width={EYE_W} height={EYE_H} />,
+    <Eye01Lash3 width={EYE_W} height={EYE_H} />,
+    <Eye01Lash4 width={EYE_W} height={EYE_H} />,
+    <Eye01Lash5 width={EYE_W} height={EYE_H} />,
+    <Eye01Lash6 width={EYE_W} height={EYE_H} />,
+    <Eye01Lash7 width={EYE_W} height={EYE_H} />,
   ],
   [
     <Eye02Lash1 width={EYE_W} height={EYE_H} />,
     <Eye02Lash2 width={EYE_W} height={EYE_H} />,
+    <Eye02Lash3 width={EYE_W} height={EYE_H} />,
+    <Eye02Lash4 width={EYE_W} height={EYE_H} />,
+    <Eye02Lash5 width={EYE_W} height={EYE_H} />,
+    <Eye02Lash6 width={EYE_W} height={EYE_H} />,
+    <Eye02Lash7 width={EYE_W} height={EYE_H} />,
   ],
 ];
 const BLUSHES = ["a", "b", "c"];
