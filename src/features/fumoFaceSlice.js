@@ -170,10 +170,10 @@ const threadColorSelector = (fumoFace) => {
   } else if (fumoFace.mouth === 5) {
     threadColors.push(
       {
-        color: "white",
+        color: "red",
         description: (
           <>
-            The color of the mouth's teeth. <b>You should keep it white.</b>
+            The color of the tongue. <b>You should keep it a reddish color.</b>
           </>
         ),
       },

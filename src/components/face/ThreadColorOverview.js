@@ -10,7 +10,6 @@ import { onSpacePress } from "@/utils/events";
 
 export default function ThreadColorOverview() {
   const threadColors = useAppSelector(selectThreadColors);
-  console.log(threadColors);
   const [showModal, setShowModal] = useState(false);
 
   return (
