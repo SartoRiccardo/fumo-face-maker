@@ -5,7 +5,7 @@ export default function ButtonSelector({ children, onChange, value }) {
     <div>
       {children.map((child, idx) => (
         <Button
-          className={`mx-2 ${value === idx ? "primary" : "border"}`}
+          className={`mx-2 my-1 border ${value === idx ? "primary" : ""}`}
           key={idx}
           onClick={(_e) => onChange(idx)}
         >

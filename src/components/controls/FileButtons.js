@@ -16,6 +16,7 @@ export default function FileButtons() {
       eyebrows: fumoFace.eyebrows + 1,
       mouth: fumoFace.mouth + 1,
       heterochromia: fumoFace.hasHeterochromia,
+      diff_clr_outline: fumoFace.hasDifferentEyeOutline,
     });
     try {
       const response = await fetch(
