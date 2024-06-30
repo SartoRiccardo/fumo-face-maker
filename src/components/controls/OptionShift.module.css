@@ -18,9 +18,12 @@
   transform: translate(50%, -50%);
   text-shadow: 1px 1px 0 white, -1px 1px 0 white, -1px -1px 0 white,
     1px -1px 0 white;
+  opacity: 0;
+}
+
+.counter {
   animation-name: fade;
   animation-duration: 1s;
-  opacity: 0;
 }
 
 @keyframes fade {

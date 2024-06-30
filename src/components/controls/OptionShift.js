@@ -1,8 +1,11 @@
 import styles from "./OptionShift.module.css";
 import { onSpacePress } from "@/utils/events";
 import { atma } from "@/lib/fonts";
+import { useState } from "react";
 
 export default function OptionShift({ children, options, onChange, value }) {
+  const [isFirstRender, setFirstRender] = useState(true);
+
   return (
     <div className={"row"}>
       <div className={"col-auto"}>
@@ -10,7 +13,11 @@ export default function OptionShift({ children, options, onChange, value }) {
           <div className={"d-flex justify-content-center flex-column"}>
             <i
               tabIndex={0}
-              onClick={(_e) => onChange((value - 1 + options) % options)}
+              onClick={(_e) => {
+                const newval = (value - 1 + options) % options;
+                if (newval != value) setFirstRender(false);
+                onChange(newval);
+              }}
               onKeyDown={onSpacePress((_e) =>
                 onChange((value - 1 + options) % options)
               )}
@@ -24,7 +31,12 @@ export default function OptionShift({ children, options, onChange, value }) {
           <div className={"d-flex justify-content-center flex-column"}>
             {children}
           </div>
-          <p className={`${atma.className} fs-3`} key={value}>
+          <p
+            className={`${atma.className} ${
+              isFirstRender ? "" : styles.counter
+            } fs-3`}
+            key={value}
+          >
             {value + 1}/{options}
           </p>
         </div>
@@ -38,7 +50,11 @@ export default function OptionShift({ children, options, onChange, value }) {
           <div className={"d-flex justify-content-center flex-column"}>
             <i
               tabIndex={0}
-              onClick={(_e) => onChange((value + 1) % options)}
+              onClick={(_e) => {
+                const newval = (value + 1) % options;
+                if (newval != value) setFirstRender(false);
+                onChange(newval);
+              }}
               onKeyDown={onSpacePress((_e) => onChange((value + 1) % options))}
               className={styles.button + " bi-chevron-right"}
             />
