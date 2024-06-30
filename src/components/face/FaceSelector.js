@@ -1,4 +1,5 @@
 "use client";
+import "./FaceSelector.css";
 import OptionShift from "../controls/OptionShift";
 import { useAppSelector, useAppDispatch } from "@/lib/store";
 import {
@@ -9,6 +10,10 @@ import {
 } from "@/features/fumoFaceSlice";
 import Eyebrow01 from "../../../public/images/eyebrows/eyebrow-1.svg";
 import Eyebrow02 from "../../../public/images/eyebrows/eyebrow-2.svg";
+import Eye01Lash1 from "../../../public/images/eyes/eye-1-lash1.svg";
+import Eye01Lash2 from "../../../public/images/eyes/eye-1-lash2.svg";
+import Eye02Lash1 from "../../../public/images/eyes/eye-2-lash1.svg";
+import Eye02Lash2 from "../../../public/images/eyes/eye-2-lash2.svg";
 import Mouth01 from "../../../public/images/mouths/mouth-1.svg";
 import Mouth02 from "../../../public/images/mouths/mouth-2.svg";
 import Mouth03 from "../../../public/images/mouths/mouth-3.svg";
@@ -34,7 +39,17 @@ const EYEBROWS = [
   <Eyebrow01 width={EYEBROW_W} height={EYEBROW_H} />,
   <Eyebrow02 width={EYEBROW_W} height={EYEBROW_H} />,
 ];
-const EYES = ["a", "b", "c"];
+const [EYE_W, EYE_H] = [300 * 1.2, 100 * 1.2];
+const EYES = [
+  [
+    <Eye01Lash1 width={EYE_W} height={EYE_H} />,
+    <Eye01Lash2 width={EYE_W} height={EYE_H} />,
+  ],
+  [
+    <Eye02Lash1 width={EYE_W} height={EYE_H} />,
+    <Eye02Lash2 width={EYE_W} height={EYE_H} />,
+  ],
+];
 const BLUSHES = ["a", "b", "c"];
 const [MOUTH_W, MOUTH_H] = [300 / 2.5, 100 / 2.5];
 const MOUTHS = [
@@ -77,7 +92,13 @@ export default function FaceSelector({ faceOptions }) {
         onChange={(eyes) => dispatch(setEyes({ eyes }))}
         value={fumoFace.eyes}
       >
-        Eye {fumoFace.eyes}
+        <div
+          className={`eyes ${
+            fumoFace.hasHeterochromia ? "heterochromatic" : ""
+          } ${fumoFace.hasDifferentEyeOutline ? "diff-outline" : ""}`}
+        >
+          {EYES[fumoFace.eyes][fumoFace.eyelash]}
+        </div>
       </OptionShift>
       {fumoFace.hasBlush && (
         <OptionShift

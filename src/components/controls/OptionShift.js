@@ -4,15 +4,19 @@ import { onSpacePress } from "@/utils/events";
 export default function OptionShift({ children, options, onChange, value }) {
   return (
     <div className={"row"}>
-      <div
-        tabIndex={0}
-        className={"col-auto"}
-        onClick={(_e) => onChange((value - 1 + options) % options)}
-        onKeyDown={onSpacePress((_e) =>
-          onChange((value - 1 + options) % options)
-        )}
-      >
-        <i className={styles.button + " bi-chevron-left"}></i>
+      <div className={"col-auto"}>
+        <div className={styles.inner + " d-flex justify-content-center"}>
+          <div className={"d-flex justify-content-center flex-column"}>
+            <i
+              tabIndex={0}
+              onClick={(_e) => onChange((value - 1 + options) % options)}
+              onKeyDown={onSpacePress((_e) =>
+                onChange((value - 1 + options) % options)
+              )}
+              className={styles.button + " bi-chevron-left"}
+            />
+          </div>
+        </div>
       </div>
       <div className={"col"}>
         <div className={styles.inner + " d-flex justify-content-center"}>
@@ -22,12 +26,20 @@ export default function OptionShift({ children, options, onChange, value }) {
         </div>
       </div>
       <div
-        tabIndex={0}
         className={"col-auto"}
         onClick={(_e) => onChange((value + 1) % options)}
         onKeyDown={onSpacePress((_e) => onChange((value + 1) % options))}
       >
-        <i className={styles.button + " bi-chevron-right"}></i>
+        <div className={styles.inner + " d-flex justify-content-center"}>
+          <div className={"d-flex justify-content-center flex-column"}>
+            <i
+              tabIndex={0}
+              onClick={(_e) => onChange((value + 1) % options)}
+              onKeyDown={onSpacePress((_e) => onChange((value + 1) % options))}
+              className={styles.button + " bi-chevron-right"}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

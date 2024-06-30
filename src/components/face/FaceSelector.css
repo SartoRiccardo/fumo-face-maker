@@ -1,0 +1,15 @@
+.heterochromatic.eyes > svg > path:nth-child(2) {
+  stroke: blue;
+}
+
+.eyes.diff-outline > svg > path:nth-child(4) {
+  stroke: darkred;
+}
+
+.heterochromatic.eyes.diff-outline > svg > path:nth-child(5) {
+  stroke: darkblue;
+}
+
+.eyes.diff-outline > svg > path:nth-child(5) {
+  stroke: darkred;
+}
