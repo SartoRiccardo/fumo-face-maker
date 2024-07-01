@@ -38,12 +38,12 @@ export default function Content() {
     <div className={styles.container_wrap + " py-sm-2"}>
       <div className={styles.container + " container"}>
         <div className={"row"}>
-          <div className={"col"}>
+          <div className={"col-12 col-lg-7 col-xl-6"}>
             <FaceSelector faceOptions={faceOptions} />
             <ThreadColorOverview />
             <FileButtons />
           </div>
-          <div className={"col"}>
+          <div className={"col-12 col-lg-5 col-xl-6"}>
             <FaceControls />
 
             <Accordion className={"my-3 shadow"}>

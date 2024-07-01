@@ -24,13 +24,13 @@ export default function FaceSelector({ faceOptions }) {
   return isLoading ? (
     <FaceSelectorPlc />
   ) : (
-    <div className={"panel shadow"}>
+    <div className={"panel shadow face-selector"}>
       <OptionShift
         options={faceOptions.eyebrows}
         onChange={(eyebrows) => dispatch(setEyebrows({ eyebrows }))}
         value={fumoFace.eyebrows}
       >
-        {EYEBROWS[fumoFace.eyebrows]}
+        <div className="eyebrows">{EYEBROWS[fumoFace.eyebrows]}</div>
       </OptionShift>
       <OptionShift
         options={faceOptions.eyes}
@@ -60,7 +60,7 @@ export default function FaceSelector({ faceOptions }) {
         value={fumoFace.mouth}
         counterPos={"up"}
       >
-        {MOUTHS[fumoFace.mouth]}
+        <div className="mouth">{MOUTHS[fumoFace.mouth]}</div>
       </OptionShift>
     </div>
   );

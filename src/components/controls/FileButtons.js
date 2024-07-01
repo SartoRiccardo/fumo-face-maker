@@ -30,7 +30,7 @@ export default function FileButtons() {
   };
 
   return (
-    <div className="d-flex justify-content-center">
+    <div className="d-flex justify-content-center my-3">
       <Button
         className={"mx-2"}
         disabled={isDownloading}

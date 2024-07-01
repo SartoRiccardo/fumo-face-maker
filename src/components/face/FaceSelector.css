@@ -13,3 +13,12 @@
 .eyes.diff-outline > svg > path:nth-child(5) {
   stroke: darkred;
 }
+
+@media only screen and (max-width: 575.98px) {
+  .eyes svg,
+  .eyebrows svg,
+  .mouth svg {
+    width: 100%;
+    height: auto;
+  }
+}
