@@ -23,7 +23,6 @@ export default function FileButtons() {
         process.env.NEXT_PUBLIC_BACKEND + "/face?" + params.toString()
       );
       const blob = await response.blob();
-      console.log(response.headers);
       download(blob, "generated.DST", "application/octet-stream");
     } catch (ex) {}
     setDownloading(false);

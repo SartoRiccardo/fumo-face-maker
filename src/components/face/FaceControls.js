@@ -44,10 +44,9 @@ export default function FaceControls() {
       <hr />
       <OptionCheckbox
         value={fumoFace.hasHeterochromia}
-        onChange={(hasHeterochromia) => {
-          dispatch(setHasHeterochromia({ hasHeterochromia }));
-          console.log(hasHeterochromia);
-        }}
+        onChange={(hasHeterochromia) =>
+          dispatch(setHasHeterochromia({ hasHeterochromia }))
+        }
       >
         <p>Heterochromia</p>
       </OptionCheckbox>
