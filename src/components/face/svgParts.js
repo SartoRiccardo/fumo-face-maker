@@ -39,20 +39,20 @@ import Eye04Lash4 from "../../../public/images/eyes/eye-4-lash4.svg";
 import Eye04Lash5 from "../../../public/images/eyes/eye-4-lash5.svg";
 import Eye04Lash6 from "../../../public/images/eyes/eye-4-lash6.svg";
 import Eye04Lash7 from "../../../public/images/eyes/eye-4-lash7.svg";
-// import Eye05Lash1 from "../../../public/images/eyes/eye-5-lash1.svg";
-// import Eye05Lash2 from "../../../public/images/eyes/eye-5-lash2.svg";
-// import Eye05Lash3 from "../../../public/images/eyes/eye-5-lash3.svg";
-// import Eye05Lash4 from "../../../public/images/eyes/eye-5-lash4.svg";
-// import Eye05Lash5 from "../../../public/images/eyes/eye-5-lash5.svg";
-// import Eye05Lash6 from "../../../public/images/eyes/eye-5-lash6.svg";
-// import Eye05Lash7 from "../../../public/images/eyes/eye-5-lash7.svg";
-// import Eye06Lash1 from "../../../public/images/eyes/eye-6-lash1.svg";
-// import Eye06Lash2 from "../../../public/images/eyes/eye-6-lash2.svg";
-// import Eye06Lash3 from "../../../public/images/eyes/eye-6-lash3.svg";
-// import Eye06Lash4 from "../../../public/images/eyes/eye-6-lash4.svg";
-// import Eye06Lash5 from "../../../public/images/eyes/eye-6-lash5.svg";
-// import Eye06Lash6 from "../../../public/images/eyes/eye-6-lash6.svg";
-// import Eye06Lash7 from "../../../public/images/eyes/eye-6-lash7.svg";
+import Eye05Lash1 from "../../../public/images/eyes/eye-5-lash1.svg";
+import Eye05Lash2 from "../../../public/images/eyes/eye-5-lash2.svg";
+import Eye05Lash3 from "../../../public/images/eyes/eye-5-lash3.svg";
+import Eye05Lash4 from "../../../public/images/eyes/eye-5-lash4.svg";
+import Eye05Lash5 from "../../../public/images/eyes/eye-5-lash5.svg";
+import Eye05Lash6 from "../../../public/images/eyes/eye-5-lash6.svg";
+import Eye05Lash7 from "../../../public/images/eyes/eye-5-lash7.svg";
+import Eye06Lash1 from "../../../public/images/eyes/eye-6-lash1.svg";
+import Eye06Lash2 from "../../../public/images/eyes/eye-6-lash2.svg";
+import Eye06Lash3 from "../../../public/images/eyes/eye-6-lash3.svg";
+import Eye06Lash4 from "../../../public/images/eyes/eye-6-lash4.svg";
+import Eye06Lash5 from "../../../public/images/eyes/eye-6-lash5.svg";
+import Eye06Lash6 from "../../../public/images/eyes/eye-6-lash6.svg";
+import Eye06Lash7 from "../../../public/images/eyes/eye-6-lash7.svg";
 import Mouth01 from "../../../public/images/mouths/mouth-1.svg";
 import Mouth02 from "../../../public/images/mouths/mouth-2.svg";
 import Mouth03 from "../../../public/images/mouths/mouth-3.svg";
@@ -126,24 +126,24 @@ export const getEyes = (width, height) => [
     <Eye04Lash6 width={width} height={height} />,
     <Eye04Lash7 width={width} height={height} />,
   ],
-  //   [
-  //     <Eye05Lash1 width={width} height={height} />,
-  //     <Eye05Lash2 width={width} height={height} />,
-  //     <Eye05Lash3 width={width} height={height} />,
-  //     <Eye05Lash4 width={width} height={height} />,
-  //     <Eye05Lash5 width={width} height={height} />,
-  //     <Eye05Lash6 width={width} height={height} />,
-  //     <Eye05Lash7 width={width} height={height} />,
-  //   ],
-  //   [
-  //     <Eye06Lash1 width={width} height={height} />,
-  //     <Eye06Lash2 width={width} height={height} />,
-  //     <Eye06Lash3 width={width} height={height} />,
-  //     <Eye06Lash4 width={width} height={height} />,
-  //     <Eye06Lash5 width={width} height={height} />,
-  //     <Eye06Lash6 width={width} height={height} />,
-  //     <Eye06Lash7 width={width} height={height} />,
-  //   ],
+  [
+    <Eye05Lash1 width={width} height={height} />,
+    <Eye05Lash2 width={width} height={height} />,
+    <Eye05Lash3 width={width} height={height} />,
+    <Eye05Lash4 width={width} height={height} />,
+    <Eye05Lash5 width={width} height={height} />,
+    <Eye05Lash6 width={width} height={height} />,
+    <Eye05Lash7 width={width} height={height} />,
+  ],
+  [
+    <Eye06Lash1 width={width} height={height} />,
+    <Eye06Lash2 width={width} height={height} />,
+    <Eye06Lash3 width={width} height={height} />,
+    <Eye06Lash4 width={width} height={height} />,
+    <Eye06Lash5 width={width} height={height} />,
+    <Eye06Lash6 width={width} height={height} />,
+    <Eye06Lash7 width={width} height={height} />,
+  ],
 ];
 
 export const getBlushes = (width, height) => [];
