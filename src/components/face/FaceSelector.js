@@ -9,7 +9,7 @@ import {
   setMouth,
 } from "@/features/fumoFaceSlice";
 import FaceSelectorPlc from "../placeholders/FaceSelectorPlc";
-import { getBlushes, getEyebrows, getMouths } from "./svgParts";
+import { getBlushes, getEyebrows, getMouths, getEyes } from "./svgParts";
 
 const EYEBROWS = getEyebrows(800 / 2.5, 110 / 2.5);
 const EYES = getEyes(300 * 1.2, 100 * 1.2);
