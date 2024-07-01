@@ -58,6 +58,7 @@ export default function FaceSelector({ faceOptions }) {
         options={faceOptions.mouths}
         onChange={(mouth) => dispatch(setMouth({ mouth }))}
         value={fumoFace.mouth}
+        counterPos={"up"}
       >
         {MOUTHS[fumoFace.mouth]}
       </OptionShift>

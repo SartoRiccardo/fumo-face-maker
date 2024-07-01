@@ -3,8 +3,20 @@ import { onSpacePress } from "@/utils/events";
 import { atma } from "@/lib/fonts";
 import { useState } from "react";
 
-export default function OptionShift({ children, options, onChange, value }) {
+export default function OptionShift({
+  children,
+  options,
+  onChange,
+  value,
+  counterPos,
+}) {
   const [isFirstRender, setFirstRender] = useState(true);
+  const counterPosCls =
+    counterPos === "up"
+      ? styles.counterUp
+      : counterPos === "down"
+      ? styles.counterDown
+      : "";
 
   return (
     <div className={"row"}>
@@ -34,7 +46,7 @@ export default function OptionShift({ children, options, onChange, value }) {
           <p
             className={`${atma.className} ${
               isFirstRender ? "" : styles.counter
-            } fs-3`}
+            } ${counterPosCls} fs-3`}
             key={value}
           >
             {value + 1}/{options}

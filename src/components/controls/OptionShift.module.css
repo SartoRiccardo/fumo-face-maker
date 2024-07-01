@@ -26,6 +26,14 @@
   animation-duration: 1s;
 }
 
+p.counterUp {
+  transform: translate(50%, -100%);
+}
+
+p.counterDown {
+  transform: translate(50%, 0%);
+}
+
 @keyframes fade {
   from {
     opacity: 1;
