@@ -1,6 +1,6 @@
-import Header from "../components/Header";
-import Content from "../components/Content";
-import Footer from "../components/Footer";
+import Header from "../components/layout/Header";
+import Content from "../components/layout/Content";
+import Footer from "../components/layout/Footer";
 
 async function getFaceOptions() {
   const response = await fetch(process.env.NEXT_PUBLIC_BACKEND + "/face/list");

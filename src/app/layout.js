@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./globals.css";
-import StoreProvider from "./StoreProvider";
+import StoreProvider from "../components/StoreProvider";
 import { atma, inter } from "@/lib/fonts";
 
 export const metadata = {

@@ -1,25 +1,24 @@
 "use client";
 import styles from "./content.module.css";
-import FaceControls from "./face/FaceControls";
-import FaceSelector from "./face/FaceSelector";
-import ThreadColorOverview from "./face/ThreadColorOverview";
-import ButtonSelector from "./controls/ButtonSelector";
-import FileButtons from "./controls/FileButtons";
+import FaceControls from "../face/FaceControls";
+import FaceSelector from "../face/FaceSelector";
+import ThreadColorOverview from "../face/ThreadColorOverview";
+import ButtonSelector from "../controls/ButtonSelector";
+import FileButtons from "../controls/FileButtons";
 import Accordion from "react-bootstrap/Accordion";
-import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/lib/store";
 import {
   selectFumoFace,
   getFaceQuery,
   setEyelash,
 } from "@/features/fumoFaceSlice";
-import Lash1 from "../../public/images/eyelashes/lash-1.svg";
-import Lash2 from "../../public/images/eyelashes/lash-2.svg";
-import Lash3 from "../../public/images/eyelashes/lash-3.svg";
-import Lash4 from "../../public/images/eyelashes/lash-4.svg";
-import Lash5 from "../../public/images/eyelashes/lash-5.svg";
-import Lash6 from "../../public/images/eyelashes/lash-6.svg";
-import Lash7 from "../../public/images/eyelashes/lash-7.svg";
+import Lash1 from "../../../public/images/eyelashes/lash-1.svg";
+import Lash2 from "../../../public/images/eyelashes/lash-2.svg";
+import Lash3 from "../../../public/images/eyelashes/lash-3.svg";
+import Lash4 from "../../../public/images/eyelashes/lash-4.svg";
+import Lash5 from "../../../public/images/eyelashes/lash-5.svg";
+import Lash6 from "../../../public/images/eyelashes/lash-6.svg";
+import Lash7 from "../../../public/images/eyelashes/lash-7.svg";
 import { useRouter } from "next/navigation";
 
 let LASH_W, LASH_H;

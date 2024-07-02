@@ -1,9 +1,9 @@
 "use client";
 import { atma } from "@/lib/fonts";
 import header from "./header.module.css";
-import Button from "./controls/Button";
+import Button from "../controls/Button";
 import { useState } from "react";
-import News from "./static/News";
+import News from "../static/News";
 
 export default function Header() {
   const [newsShow, setNewsShow] = useState(false);
