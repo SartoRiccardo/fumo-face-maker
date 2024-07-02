@@ -1,14 +1,19 @@
-"use client";
 import Header from "../components/Header";
 import Content from "../components/Content";
 import Footer from "../components/Footer";
-import { useEffect } from "react";
 
-export default function Home() {
+async function getFaceOptions() {
+  const response = await fetch(process.env.NEXT_PUBLIC_BACKEND + "/face/list");
+  return await response.json();
+}
+
+export default async function Home() {
+  const faceOptions = await getFaceOptions();
+
   return (
     <div className={"content"}>
       <Header />
-      <Content />
+      <Content faceOptions={faceOptions} />
       <Footer />
     </div>
   );

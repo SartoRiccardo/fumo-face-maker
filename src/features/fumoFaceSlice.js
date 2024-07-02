@@ -217,6 +217,8 @@ export const getFaceQuery = (fumoFace) => {
   return new URLSearchParams(params).toString();
 };
 
+export const getFaceFromQuery = (query) => {};
+
 export const selectFumoFace = (state) => state.fumoFace;
 export const selectThreadColors = createSelector(
   [selectFumoFace],
