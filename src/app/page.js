@@ -8,9 +8,13 @@ async function getFaceOptions() {
   const response = await fetch(process.env.NEXT_PUBLIC_BACKEND + "/face/list");
   return await response.json();
 }
+let faceOptions = null;
 
 export default async function Home({ searchParams }) {
-  const faceOptions = await getFaceOptions();
+  if (faceOptions === null) {
+    faceOptions = await getFaceOptions();
+    console.log(faceOptions);
+  }
   const fumoFace = getFaceFromQuery(searchParams, faceOptions);
 
   return (
