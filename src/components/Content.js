@@ -28,21 +28,7 @@ LASH_W = LASH_H = "2rem";
 export default async function Content({ faceOptions }) {
   const router = useRouter();
   const fumoFace = useAppSelector(selectFumoFace);
-
   const dispatch = useAppDispatch();
-  // const [faceOptions, setFaceOptions] = useState(null);
-  // useEffect(() => {
-  //   // Get parts list from server
-  //   const getData = async () => {
-  //     const response = await fetch(
-  //       process.env.NEXT_PUBLIC_BACKEND + "/face/list"
-  //     );
-  //     setFaceOptions(await response.json());
-  //   };
-  //   getData();
-
-  //   // Set initial face state from qstring
-  // }, []);
 
   return (
     <div className={styles.container_wrap + " py-sm-2"}>
