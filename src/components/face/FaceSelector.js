@@ -10,6 +10,8 @@ import {
 } from "@/features/fumoFaceSlice";
 import FaceSelectorPlc from "../placeholders/FaceSelectorPlc";
 import { getBlushes, getEyebrows, getMouths, getEyes } from "./svgParts";
+import { useRouter } from "next/navigation";
+import { getFaceQuery } from "@/features/fumoFaceSlice";
 
 const EYEBROWS = getEyebrows(800 / 2.5, 110 / 2.5);
 const EYES = getEyes(300 * 1.2, 100 * 1.2);
@@ -20,6 +22,7 @@ export default function FaceSelector({ faceOptions }) {
   const fumoFace = useAppSelector((state) => state.fumoFace);
   const dispatch = useAppDispatch();
   const isLoading = faceOptions === null;
+  const router = useRouter();
 
   return isLoading ? (
     <FaceSelectorPlc />
@@ -27,14 +30,26 @@ export default function FaceSelector({ faceOptions }) {
     <div className={"panel shadow face-selector"}>
       <OptionShift
         options={faceOptions.eyebrows}
-        onChange={(eyebrows) => dispatch(setEyebrows({ eyebrows }))}
+        onChange={(eyebrows) => {
+          router.push(`?${getFaceQuery({ ...fumoFace, eyebrows })}`, {
+            scroll: false,
+            shallow: true,
+          });
+          dispatch(setEyebrows({ eyebrows }));
+        }}
         value={fumoFace.eyebrows}
       >
         <div className="eyebrows">{EYEBROWS[fumoFace.eyebrows]}</div>
       </OptionShift>
       <OptionShift
         options={faceOptions.eyes}
-        onChange={(eyes) => dispatch(setEyes({ eyes }))}
+        onChange={(eyes) => {
+          router.push(`?${getFaceQuery({ ...fumoFace, eyes })}`, {
+            scroll: false,
+            shallow: true,
+          });
+          dispatch(setEyes({ eyes }));
+        }}
         value={fumoFace.eyes}
       >
         <div
@@ -48,7 +63,13 @@ export default function FaceSelector({ faceOptions }) {
       {fumoFace.hasBlush && (
         <OptionShift
           options={faceOptions.blushes}
-          onChange={(blush) => dispatch(setBlush({ blush }))}
+          onChange={(blush) => {
+            router.push(`?${getFaceQuery({ ...fumoFace, blush })}`, {
+              scroll: false,
+              shallow: true,
+            });
+            dispatch(setBlush({ blush }));
+          }}
           value={fumoFace.blush}
         >
           Blush {fumoFace.blush}
@@ -56,7 +77,13 @@ export default function FaceSelector({ faceOptions }) {
       )}
       <OptionShift
         options={faceOptions.mouths}
-        onChange={(mouth) => dispatch(setMouth({ mouth }))}
+        onChange={(mouth) => {
+          router.push(`?${getFaceQuery({ ...fumoFace, mouth })}`, {
+            scroll: false,
+            shallow: true,
+          });
+          dispatch(setMouth({ mouth }));
+        }}
         value={fumoFace.mouth}
         counterPos={"up"}
       >

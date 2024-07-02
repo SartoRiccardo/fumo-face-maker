@@ -7,6 +7,12 @@ import ButtonSelector from "./controls/ButtonSelector";
 import FileButtons from "./controls/FileButtons";
 import Accordion from "react-bootstrap/Accordion";
 import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "@/lib/store";
+import {
+  selectFumoFace,
+  getFaceQuery,
+  setEyelash,
+} from "@/features/fumoFaceSlice";
 import Lash1 from "../../public/images/eyelashes/lash-1.svg";
 import Lash2 from "../../public/images/eyelashes/lash-2.svg";
 import Lash3 from "../../public/images/eyelashes/lash-3.svg";
@@ -14,14 +20,15 @@ import Lash4 from "../../public/images/eyelashes/lash-4.svg";
 import Lash5 from "../../public/images/eyelashes/lash-5.svg";
 import Lash6 from "../../public/images/eyelashes/lash-6.svg";
 import Lash7 from "../../public/images/eyelashes/lash-7.svg";
-import { useAppDispatch, useAppSelector } from "@/lib/store";
-import { selectFumoFace, setEyelash } from "@/features/fumoFaceSlice";
+import { useRouter } from "next/navigation";
 
 let LASH_W, LASH_H;
 LASH_W = LASH_H = "2rem";
 
 export default function Content() {
+  const router = useRouter();
   const fumoFace = useAppSelector(selectFumoFace);
+
   const dispatch = useAppDispatch();
   const [faceOptions, setFaceOptions] = useState(null);
   useEffect(() => {
@@ -51,7 +58,16 @@ export default function Content() {
                 <Accordion.Header>Eyelashes</Accordion.Header>
                 <Accordion.Body>
                   <ButtonSelector
-                    onChange={(eyelash) => dispatch(setEyelash({ eyelash }))}
+                    onChange={(eyelash) => {
+                      router.push(
+                        `?${getFaceQuery({ ...fumoFace, eyelash })}`,
+                        {
+                          scroll: false,
+                          shallow: true,
+                        }
+                      );
+                      dispatch(setEyelash({ eyelash }));
+                    }}
                     value={fumoFace.eyelash}
                   >
                     <Lash1 width={LASH_W} height={LASH_H} />

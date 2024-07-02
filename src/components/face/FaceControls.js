@@ -9,10 +9,13 @@ import {
   setHasDifferentEyebrows,
   selectFumoFace,
 } from "@/features/fumoFaceSlice";
+import { getFaceQuery } from "@/features/fumoFaceSlice";
+import { useRouter } from "next/navigation";
 
 export default function FaceControls() {
   const fumoFace = useAppSelector(selectFumoFace);
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   return (
     <div className={"panel shadow"}>
@@ -44,17 +47,28 @@ export default function FaceControls() {
       <hr />
       <OptionCheckbox
         value={fumoFace.hasHeterochromia}
-        onChange={(hasHeterochromia) =>
-          dispatch(setHasHeterochromia({ hasHeterochromia }))
-        }
+        onChange={(hasHeterochromia) => {
+          router.push(`?${getFaceQuery({ ...fumoFace, hasHeterochromia })}`, {
+            scroll: false,
+            shallow: true,
+          });
+          dispatch(setHasHeterochromia({ hasHeterochromia }));
+        }}
       >
         <p>Heterochromia</p>
       </OptionCheckbox>
       <OptionCheckbox
         value={fumoFace.hasDifferentEyeOutline}
-        onChange={(hasDifferentEyeOutline) =>
-          dispatch(setHasDifferentEyeOutline({ hasDifferentEyeOutline }))
-        }
+        onChange={(hasDifferentEyeOutline) => {
+          router.push(
+            `?${getFaceQuery({ ...fumoFace, hasDifferentEyeOutline })}`,
+            {
+              scroll: false,
+              shallow: true,
+            }
+          );
+          dispatch(setHasDifferentEyeOutline({ hasDifferentEyeOutline }));
+        }}
       >
         <p>Different Eye Outline Color</p>
       </OptionCheckbox>

@@ -204,6 +204,18 @@ const threadColorSelector = (fumoFace) => {
   return threadColors;
 };
 
+export const getFaceQuery = (fumoFace) => {
+  const { eyebrows, eyes, eyelash, mouth } = fumoFace;
+  return new URLSearchParams({
+    eyebrows,
+    eyes,
+    eyelash,
+    mouth,
+    het: fumoFace.hasHeterochromia,
+    doc: fumoFace.hasDifferentEyeOutline,
+  }).toString();
+};
+
 export const selectFumoFace = (state) => state.fumoFace;
 export const selectThreadColors = createSelector(
   [selectFumoFace],
