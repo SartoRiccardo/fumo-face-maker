@@ -254,7 +254,6 @@ export const getFaceFromQuery = (query, options) => {
   if ("het" in query && query.het === "true") face.hasHeterochromia = true;
   if ("doc" in query && query.het === "true")
     face.hasDifferentEyeOutline = true;
-  console.log(face);
   return face;
 };
 

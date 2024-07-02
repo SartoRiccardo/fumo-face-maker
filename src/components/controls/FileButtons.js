@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "./Button";
 import { useAppSelector } from "@/lib/store";
 import { selectFumoFace } from "@/features/fumoFaceSlice";
+import { getFaceQuery } from "@/features/fumoFaceSlice";
 import download from "downloadjs";
 
 export default function FileButtons() {
@@ -37,7 +38,17 @@ export default function FileButtons() {
       >
         <i className="bi bi-download" />
       </Button>
-      <Button className={"mx-2"}>
+
+      <Button
+        className={"mx-2"}
+        onClick={(_e) =>
+          navigator.clipboard.writeText(
+            `${window.location.protocol}//${
+              window.location.host
+            }/?${getFaceQuery(fumoFace)}`
+          )
+        }
+      >
         <i className="bi bi-share" />
       </Button>
 

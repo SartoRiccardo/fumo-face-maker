@@ -13,7 +13,6 @@ let faceOptions = null;
 export default async function Home({ searchParams }) {
   if (faceOptions === null) {
     faceOptions = await getFaceOptions();
-    console.log(faceOptions);
   }
   const fumoFace = getFaceFromQuery(searchParams, faceOptions);
 

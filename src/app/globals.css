@@ -52,7 +52,8 @@ h6 {
   background-color: #00b8d4;
 }
 
-.hmm {
-  border-bottom-left-radius: 1rem;
-  border-bottom-left-radius: 1rem;
+.offscreen {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
 }
