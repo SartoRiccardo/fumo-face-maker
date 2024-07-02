@@ -217,7 +217,25 @@ export const getFaceQuery = (fumoFace) => {
   return new URLSearchParams(params).toString();
 };
 
-export const getFaceFromQuery = (query) => {};
+export const getFaceFromQuery = (query, options) => {
+  const face = {};
+  if ("eb" in query && 0 <= parseInt(query.eb) < options.eyebrows)
+    face.eyebrows = parseInt(query.eb);
+  if ("ey" in query && 0 <= parseInt(query.ey) < options.eyes)
+    face.eyes = parseInt(query.ey);
+  if ("el" in query && 0 <= parseInt(query.el) < options.eyelashes)
+    face.eyelash = parseInt(query.el);
+  if ("mt" in query && 0 <= parseInt(query.mt) < options.mouths)
+    face.mouth = parseInt(query.mt);
+  if ("bl" in query && 0 <= parseInt(query.bl) < options.blushes) {
+    face.blush = parseInt(query.bl);
+    face.hasBlush = true;
+  }
+  if ("het" in query && query.het === "true") face.hasHeterochromia = true;
+  if ("doc" in query && query.het === "true")
+    face.hasDifferentEyeOutline = true;
+  return face;
+};
 
 export const selectFumoFace = (state) => state.fumoFace;
 export const selectThreadColors = createSelector(
@@ -226,7 +244,7 @@ export const selectThreadColors = createSelector(
 );
 
 export const {
-  setCombination,
+  setFace,
   setHasBlush,
   setAccessories,
   setEyebrows,
