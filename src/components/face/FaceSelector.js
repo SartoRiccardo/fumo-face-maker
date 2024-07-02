@@ -31,11 +31,11 @@ export default function FaceSelector({ faceOptions }) {
       <OptionShift
         options={faceOptions.eyebrows}
         onChange={(eyebrows) => {
-          router.push(`?${getFaceQuery({ ...fumoFace, eyebrows })}`, {
-            scroll: false,
-            shallow: true,
-          });
           dispatch(setEyebrows({ eyebrows }));
+          // router.push(`?${getFaceQuery({ ...fumoFace, eyebrows })}`, {
+          //   scroll: false,
+          //   shallow: true,
+          // });
         }}
         value={fumoFace.eyebrows}
       >
@@ -44,11 +44,11 @@ export default function FaceSelector({ faceOptions }) {
       <OptionShift
         options={faceOptions.eyes}
         onChange={(eyes) => {
-          router.push(`?${getFaceQuery({ ...fumoFace, eyes })}`, {
-            scroll: false,
-            shallow: true,
-          });
           dispatch(setEyes({ eyes }));
+          // router.push(`?${getFaceQuery({ ...fumoFace, eyes })}`, {
+          //   scroll: false,
+          //   shallow: true,
+          // });
         }}
         value={fumoFace.eyes}
       >
@@ -64,11 +64,11 @@ export default function FaceSelector({ faceOptions }) {
         <OptionShift
           options={faceOptions.blushes}
           onChange={(blush) => {
-            router.push(`?${getFaceQuery({ ...fumoFace, blush })}`, {
-              scroll: false,
-              shallow: true,
-            });
             dispatch(setBlush({ blush }));
+            // router.push(`?${getFaceQuery({ ...fumoFace, blush })}`, {
+            //   scroll: false,
+            //   shallow: true,
+            // });
           }}
           value={fumoFace.blush}
         >
@@ -78,11 +78,11 @@ export default function FaceSelector({ faceOptions }) {
       <OptionShift
         options={faceOptions.mouths}
         onChange={(mouth) => {
-          router.push(`?${getFaceQuery({ ...fumoFace, mouth })}`, {
-            scroll: false,
-            shallow: true,
-          });
           dispatch(setMouth({ mouth }));
+          // router.push(`?${getFaceQuery({ ...fumoFace, mouth })}`, {
+          // scroll: false,
+          // shallow: true,
+          // });
         }}
         value={fumoFace.mouth}
         counterPos={"up"}

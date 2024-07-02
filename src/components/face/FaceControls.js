@@ -48,11 +48,11 @@ export default function FaceControls() {
       <OptionCheckbox
         value={fumoFace.hasHeterochromia}
         onChange={(hasHeterochromia) => {
-          router.push(`?${getFaceQuery({ ...fumoFace, hasHeterochromia })}`, {
-            scroll: false,
-            shallow: true,
-          });
           dispatch(setHasHeterochromia({ hasHeterochromia }));
+          // router.push(`?${getFaceQuery({ ...fumoFace, hasHeterochromia })}`, {
+          //   scroll: false,
+          //   shallow: true,
+          // });
         }}
       >
         <p>Heterochromia</p>
@@ -60,14 +60,14 @@ export default function FaceControls() {
       <OptionCheckbox
         value={fumoFace.hasDifferentEyeOutline}
         onChange={(hasDifferentEyeOutline) => {
-          router.push(
-            `?${getFaceQuery({ ...fumoFace, hasDifferentEyeOutline })}`,
-            {
-              scroll: false,
-              shallow: true,
-            }
-          );
           dispatch(setHasDifferentEyeOutline({ hasDifferentEyeOutline }));
+          // router.push(
+          //   `?${getFaceQuery({ ...fumoFace, hasDifferentEyeOutline })}`,
+          //   {
+          //     scroll: false,
+          //     shallow: true,
+          //   }
+          // );
         }}
       >
         <p>Different Eye Outline Color</p>

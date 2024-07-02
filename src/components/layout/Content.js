@@ -24,7 +24,7 @@ import { useRouter } from "next/navigation";
 let LASH_W, LASH_H;
 LASH_W = LASH_H = "2rem";
 
-export default async function Content({ faceOptions }) {
+export default function Content({ faceOptions }) {
   const router = useRouter();
   const fumoFace = useAppSelector(selectFumoFace);
   const dispatch = useAppDispatch();
@@ -47,14 +47,14 @@ export default async function Content({ faceOptions }) {
                 <Accordion.Body>
                   <ButtonSelector
                     onChange={(eyelash) => {
-                      router.push(
-                        `?${getFaceQuery({ ...fumoFace, eyelash })}`,
-                        {
-                          scroll: false,
-                          shallow: true,
-                        }
-                      );
                       dispatch(setEyelash({ eyelash }));
+                      // router.push(
+                      //   `?${getFaceQuery({ ...fumoFace, eyelash })}`,
+                      //   {
+                      //     scroll: false,
+                      //     shallow: true,
+                      //   }
+                      // );
                     }}
                     value={fumoFace.eyelash}
                   >
