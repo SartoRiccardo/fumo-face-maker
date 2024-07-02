@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -12,6 +12,7 @@
     "@reduxjs/toolkit": "^2.2.5",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "clipboard-copy": "^4.0.1",
     "downloadjs": "^1.4.7",
     "next": "14.2.4",
     "react": "^18",

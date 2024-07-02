@@ -4,6 +4,7 @@ import { useAppSelector } from "@/lib/store";
 import { selectFumoFace } from "@/features/fumoFaceSlice";
 import { getFaceQuery } from "@/features/fumoFaceSlice";
 import download from "downloadjs";
+import copyToClipboard from "clipboard-copy";
 
 export default function FileButtons() {
   const fumoFace = useAppSelector(selectFumoFace);
@@ -39,10 +40,11 @@ export default function FileButtons() {
         <i className="bi bi-download" />
       </Button>
 
+      <textaera className="offscreen" id="copy-clipboard" />
       <Button
         className={"mx-2"}
-        onClick={(_e) =>
-          navigator.clipboard.writeText(
+        onClick={async (_e) =>
+          await copyToClipboard(
             `${window.location.protocol}//${
               window.location.host
             }/?${getFaceQuery(fumoFace)}`
