@@ -20,10 +20,9 @@ export const fumoFaceSlice = createSlice({
   },
   reducers: {
     setFace: (state, { payload }) => {
-      if (eyebrows in payload) state.eyebrows = payload.eyebrows;
-      if (eyes in payload) state.eyes = payload.eyes;
-      if (blush in payload) state.blush = payload.blush;
-      if (mouth in payload) state.mouth = payload.mouth;
+      for (const key of Object.keys(state)) {
+        if (key in payload) state[key] = payload[key];
+      }
     },
     setEyebrows: (state, { payload }) => {
       state.eyebrows = payload.eyebrows;
@@ -206,14 +205,16 @@ const threadColorSelector = (fumoFace) => {
 
 export const getFaceQuery = (fumoFace) => {
   const { eyebrows, eyes, eyelash, mouth } = fumoFace;
-  return new URLSearchParams({
-    eyebrows,
-    eyes,
-    eyelash,
-    mouth,
-    het: fumoFace.hasHeterochromia,
-    doc: fumoFace.hasDifferentEyeOutline,
-  }).toString();
+  const params = {
+    eb: eyebrows,
+    ey: eyes,
+    el: eyelash,
+    mt: mouth,
+  };
+  if (fumoFace.hasBlush) params.bl = fumoFace.blush;
+  if (fumoFace.hasHeterochromia) params.het = true;
+  if (fumoFace.hasDifferentEyeOutline) params.doc = true;
+  return new URLSearchParams(params).toString();
 };
 
 export const selectFumoFace = (state) => state.fumoFace;
