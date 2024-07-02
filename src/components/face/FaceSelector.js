@@ -32,10 +32,11 @@ export default function FaceSelector({ faceOptions }) {
         options={faceOptions.eyebrows}
         onChange={(eyebrows) => {
           dispatch(setEyebrows({ eyebrows }));
-          // router.push(`?${getFaceQuery({ ...fumoFace, eyebrows })}`, {
-          //   scroll: false,
-          //   shallow: true,
-          // });
+          window.history.replaceState(
+            null,
+            document.title,
+            `?${getFaceQuery({ ...fumoFace, eyebrows })}`
+          );
         }}
         value={fumoFace.eyebrows}
       >
@@ -45,10 +46,11 @@ export default function FaceSelector({ faceOptions }) {
         options={faceOptions.eyes}
         onChange={(eyes) => {
           dispatch(setEyes({ eyes }));
-          // router.push(`?${getFaceQuery({ ...fumoFace, eyes })}`, {
-          //   scroll: false,
-          //   shallow: true,
-          // });
+          window.history.replaceState(
+            null,
+            document.title,
+            `?${getFaceQuery({ ...fumoFace, eyes })}`
+          );
         }}
         value={fumoFace.eyes}
       >
@@ -65,10 +67,11 @@ export default function FaceSelector({ faceOptions }) {
           options={faceOptions.blushes}
           onChange={(blush) => {
             dispatch(setBlush({ blush }));
-            // router.push(`?${getFaceQuery({ ...fumoFace, blush })}`, {
-            //   scroll: false,
-            //   shallow: true,
-            // });
+            window.history.replaceState(
+              null,
+              document.title,
+              `?${getFaceQuery({ ...fumoFace, blush })}`
+            );
           }}
           value={fumoFace.blush}
         >
@@ -79,10 +82,11 @@ export default function FaceSelector({ faceOptions }) {
         options={faceOptions.mouths}
         onChange={(mouth) => {
           dispatch(setMouth({ mouth }));
-          // router.push(`?${getFaceQuery({ ...fumoFace, mouth })}`, {
-          // scroll: false,
-          // shallow: true,
-          // });
+          window.history.replaceState(
+            null,
+            document.title,
+            `?${getFaceQuery({ ...fumoFace, mouth })}`
+          );
         }}
         value={fumoFace.mouth}
         counterPos={"up"}

@@ -48,13 +48,11 @@ export default function Content({ faceOptions }) {
                   <ButtonSelector
                     onChange={(eyelash) => {
                       dispatch(setEyelash({ eyelash }));
-                      // router.push(
-                      //   `?${getFaceQuery({ ...fumoFace, eyelash })}`,
-                      //   {
-                      //     scroll: false,
-                      //     shallow: true,
-                      //   }
-                      // );
+                      window.history.replaceState(
+                        null,
+                        document.title,
+                        `?${getFaceQuery({ ...fumoFace, eyelash })}`
+                      );
                     }}
                     value={fumoFace.eyelash}
                   >
