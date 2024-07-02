@@ -219,21 +219,42 @@ export const getFaceQuery = (fumoFace) => {
 
 export const getFaceFromQuery = (query, options) => {
   const face = {};
-  if ("eb" in query && 0 <= parseInt(query.eb) < options.eyebrows)
+  if (
+    "eb" in query &&
+    0 <= parseInt(query.eb) &&
+    parseInt(query.eb) < options.eyebrows
+  )
     face.eyebrows = parseInt(query.eb);
-  if ("ey" in query && 0 <= parseInt(query.ey) < options.eyes)
+  if (
+    "ey" in query &&
+    0 <= parseInt(query.ey) &&
+    parseInt(query.ey) < options.eyes
+  )
     face.eyes = parseInt(query.ey);
-  if ("el" in query && 0 <= parseInt(query.el) < options.eyelashes)
+  if (
+    "el" in query &&
+    0 <= parseInt(query.el) &&
+    parseInt(query.el) < options.eyelashes
+  )
     face.eyelash = parseInt(query.el);
-  if ("mt" in query && 0 <= parseInt(query.mt) < options.mouths)
+  if (
+    "mt" in query &&
+    0 <= parseInt(query.mt) &&
+    parseInt(query.mt) < options.mouths
+  )
     face.mouth = parseInt(query.mt);
-  if ("bl" in query && 0 <= parseInt(query.bl) < options.blushes) {
+  if (
+    "bl" in query &&
+    0 <= parseInt(query.bl) &&
+    parseInt(query.bl) < options.blushes
+  ) {
     face.blush = parseInt(query.bl);
     face.hasBlush = true;
   }
   if ("het" in query && query.het === "true") face.hasHeterochromia = true;
   if ("doc" in query && query.het === "true")
     face.hasDifferentEyeOutline = true;
+  console.log(face);
   return face;
 };
 
