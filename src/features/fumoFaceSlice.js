@@ -228,8 +228,17 @@ export const getFaceQuery = (fumoFace) => {
     mt: mouth,
   };
   if (fumoFace.hasBlush) params.bl = fumoFace.blush;
-  if (fumoFace.hasHeterochromia) params.het = true;
-  if (fumoFace.hasDifferentEyeOutline) params.doc = true;
+  if (fumoFace.hasHeterochromia) {
+    params.het = true;
+    params.ecl = eyes.colors.inner.join(",");
+  } else {
+    params.ecl = eyes.colors.inner[0];
+  }
+  if (fumoFace.hasDifferentEyeOutline) {
+    params.doc = true;
+    if (fumoFace.hasHeterochromia) params.ocl = eyes.colors.outline.join(",");
+    else params.ocl = eyes.colors.outline[0];
+  }
   return new URLSearchParams(params).toString();
 };
 
@@ -273,6 +282,18 @@ export const getFaceFromQuery = (query, options) => {
   if ("het" in query && query.het === "true") face.hasHeterochromia = true;
   if ("doc" in query && query.doc === "true")
     face.hasDifferentEyeOutline = true;
+  if ("ecl" in query) {
+    const eyecols = query.ecl.split(",");
+    for (let i = 0; i < Math.min(eyecols.length, 2); i++) {
+      face.eyes.colors.inner[i] = eyecols[i];
+    }
+  }
+  if ("ocl" in query) {
+    const outcols = query.ocl.split(",");
+    for (let i = 0; i < Math.min(outcols.length, 2); i++) {
+      face.eyes.colors.outline[i] = outcols[i];
+    }
+  }
   return face;
 };
 
