@@ -12,14 +12,29 @@ export default function FileButtons() {
 
   const generateFace = async (_e) => {
     setDownloading(true);
-    const params = new URLSearchParams({
+
+    const paramsDict = {
       eyes: fumoFace.eyes.chosen[0] + 1,
       eyelashes: fumoFace.eyelash + 1,
       eyebrows: fumoFace.eyebrows + 1,
       mouth: fumoFace.mouth + 1,
-      heterochromia: fumoFace.hasHeterochromia,
-      diff_clr_outline: fumoFace.hasDifferentEyeOutline,
-    });
+    };
+    let eyecols = [fumoFace.eyes.colors.inner[0]];
+    let outcols = [];
+    if (fumoFace.hasDifferentEyeOutline) {
+      paramsDict.diff_clr_outline = fumoFace.hasDifferentEyeOutline;
+      outcols.push(fumoFace.eyes.colors.outline[0]);
+    }
+    if (fumoFace.hasHeterochromia) {
+      paramsDict.heterochromia = fumoFace.hasHeterochromia;
+      eyecols.push(fumoFace.eyes.colors.inner[1]);
+      if (fumoFace.hasDifferentEyeOutline)
+        outcols.push(fumoFace.eyes.colors.outline[1]);
+    }
+    paramsDict.eyecols = eyecols.join(",");
+    if (outcols.length) paramsDict.outcols = outcols.join(",");
+
+    const params = new URLSearchParams(paramsDict);
     try {
       const response = await fetch(
         process.env.NEXT_PUBLIC_BACKEND + "/face?" + params.toString()
@@ -27,6 +42,7 @@ export default function FileButtons() {
       const blob = await response.blob();
       download(blob, "generated.DST", "application/octet-stream");
     } catch (ex) {}
+
     setDownloading(false);
   };
 
@@ -40,7 +56,6 @@ export default function FileButtons() {
         <i className="bi bi-download" />
       </Button>
 
-      <textaera className="offscreen" id="copy-clipboard" />
       <Button
         className={"mx-2"}
         onClick={async (_e) =>

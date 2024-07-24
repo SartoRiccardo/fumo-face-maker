@@ -9,8 +9,15 @@ export default function ColorPickerMod({ show, onHide, onSelect }) {
     <Modal show={show} onHide={onHide} size="lg">
       <Modal.Body>
         <h3 className={" text-center"}>Color Picker</h3>
+        <p>
+          The colors below are the only colors supported by PES v1 files.
+          Looking for a different color? Don't bother creating the perfect file.
+          Just place the correct thread on your machine!
+        </p>
+        <hr />
         {Object.keys(pesColors).map((clr) => (
           <ThreadColor
+            key={clr}
             color={pesColors[clr]}
             onClick={(_e) => {
               onSelect(clr);
