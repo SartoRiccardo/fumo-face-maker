@@ -117,7 +117,7 @@ const threadColorSelector = (fumoFace) => {
       0,
       {
         key: "inner",
-        idx: 1,
+        idx: 0,
         color: fumoFace.eyes.colors.inner[0],
         description: (
           <>
