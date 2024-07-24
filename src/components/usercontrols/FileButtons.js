@@ -40,7 +40,7 @@ export default function FileButtons() {
         process.env.NEXT_PUBLIC_BACKEND + "/face?" + params.toString()
       );
       const blob = await response.blob();
-      download(blob, "generated.DST", "application/octet-stream");
+      download(blob, "generated.PES", "application/octet-stream");
     } catch (ex) {}
 
     setDownloading(false);
