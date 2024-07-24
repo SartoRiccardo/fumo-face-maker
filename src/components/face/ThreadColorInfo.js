@@ -4,7 +4,7 @@ import { useAppSelector } from "@/lib/store";
 import ThreadColor from "./ThreadColor";
 import { selectThreadColors } from "@/features/fumoFaceSlice";
 import { atma } from "@/lib/fonts";
-import Button from "../controls/Button";
+import Button from "../usercontrols/Button";
 import { DropdownButton } from "react-bootstrap";
 
 export default function ThreadColorInfo({ show, onHide }) {

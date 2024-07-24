@@ -1,7 +1,19 @@
 import { Modal } from "react-bootstrap";
-import Button from "../controls/Button";
+import Button from "../usercontrols/Button";
 
-const NEWS_TEXT = [{ date: "2nd Jul 2024", desc: "Initial Release." }];
+const NEWS_TEXT = [
+  {
+    date: "24th Jul 2024",
+    desc: (
+      <ul>
+        <li>Generated files are now PES files instead of DST.</li>
+        <li>Files now contain color info</li>
+        <li>You can now choose the color info for your eyes.</li>
+      </ul>
+    ),
+  },
+  { date: "2nd Jul 2024", desc: "Initial Release." },
+];
 
 export default function News({ show, onHide }) {
   return (

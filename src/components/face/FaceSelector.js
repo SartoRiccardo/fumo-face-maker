@@ -1,6 +1,6 @@
 "use client";
 import "./FaceSelector.css";
-import OptionShift from "../controls/OptionShift";
+import OptionShift from "../usercontrols/OptionShift";
 import { useAppSelector, useAppDispatch } from "@/lib/store";
 import {
   setEyebrows,
@@ -33,11 +33,6 @@ export default function FaceSelector({ faceOptions }) {
         options={faceOptions.eyebrows}
         onChange={(eyebrows) => {
           dispatch(setEyebrows({ eyebrows }));
-          // window.history.replaceState(
-          //   null,
-          //   document.title,
-          //   `?${getFaceQuery({ ...fumoFace, eyebrows })}`
-          // );
         }}
         value={fumoFace.eyebrows}
       >
@@ -47,11 +42,6 @@ export default function FaceSelector({ faceOptions }) {
         options={faceOptions.eyes}
         onChange={(eyes) => {
           dispatch(setEyes({ chosen: { 0: eyes } }));
-          // window.history.replaceState(
-          //   null,
-          //   document.title,
-          //   `?${getFaceQuery({ ...fumoFace, eyes })}`
-          // );
         }}
         value={fumoFace.eyes.chosen[0]}
       >
@@ -68,11 +58,6 @@ export default function FaceSelector({ faceOptions }) {
           options={faceOptions.blushes}
           onChange={(blush) => {
             dispatch(setBlush({ blush }));
-            // window.history.replaceState(
-            //   null,
-            //   document.title,
-            //   `?${getFaceQuery({ ...fumoFace, blush })}`
-            // );
           }}
           value={fumoFace.blush}
         >
@@ -83,11 +68,6 @@ export default function FaceSelector({ faceOptions }) {
         options={faceOptions.mouths}
         onChange={(mouth) => {
           dispatch(setMouth({ mouth }));
-          // window.history.replaceState(
-          //   null,
-          //   document.title,
-          //   `?${getFaceQuery({ ...fumoFace, mouth })}`
-          // );
         }}
         value={fumoFace.mouth}
         counterPos={"up"}

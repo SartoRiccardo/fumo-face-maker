@@ -2,7 +2,7 @@ import styles from "./FaceSelectorPlc.module.css";
 import Eyebrow01 from "../../../public/images/eyebrows/eyebrow-1.svg";
 import Eye01Lash1 from "../../../public/images/eyes/eye-1-lash1.svg";
 import Mouth01 from "../../../public/images/mouths/mouth-1.svg";
-import OptionShift from "../controls/OptionShift";
+import OptionShift from "../usercontrols/OptionShift";
 
 export default function FaceSelectorPlc() {
   return (

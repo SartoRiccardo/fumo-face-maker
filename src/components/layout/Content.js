@@ -3,8 +3,8 @@ import styles from "./content.module.css";
 import FaceControls from "../face/FaceControls";
 import FaceSelector from "../face/FaceSelector";
 import ThreadColorOverview from "../face/ThreadColorOverview";
-import ButtonSelector from "../controls/ButtonSelector";
-import FileButtons from "../controls/FileButtons";
+import ButtonSelector from "../usercontrols/ButtonSelector";
+import FileButtons from "../usercontrols/FileButtons";
 import Accordion from "react-bootstrap/Accordion";
 import { useAppDispatch, useAppSelector } from "@/lib/store";
 import {
@@ -48,11 +48,6 @@ export default function Content({ faceOptions }) {
                   <ButtonSelector
                     onChange={(eyelash) => {
                       dispatch(setEyelash({ eyelash }));
-                      // window.history.replaceState(
-                      //   null,
-                      //   document.title,
-                      //   `?${getFaceQuery({ ...fumoFace, eyelash })}`
-                      // );
                     }}
                     value={fumoFace.eyelash}
                   >

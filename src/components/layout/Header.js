@@ -1,7 +1,7 @@
 "use client";
 import { atma } from "@/lib/fonts";
 import header from "./header.module.css";
-import Button from "../controls/Button";
+import Button from "../usercontrols/Button";
 import { useState } from "react";
 import News from "../static/News";
 

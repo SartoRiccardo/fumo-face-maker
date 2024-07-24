@@ -211,7 +211,7 @@ export const getFaceQuery = (fumoFace) => {
   const { eyebrows, eyes, eyelash, mouth } = fumoFace;
   const params = {
     eb: eyebrows,
-    ey: eyes,
+    ey: eyes.chosen[0],
     el: eyelash,
     mt: mouth,
   };
