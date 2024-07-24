@@ -42,7 +42,7 @@ export default function News({ show, onHide }) {
         {NEWS_TEXT.map(({ date, desc }) => (
           <div key={date}>
             <h3 className="fs-5">{date}</h3>
-            <p>{desc}</p>
+            {desc instanceof String ? <p>desc</p> : desc}
           </div>
         ))}
       </Modal.Body>
