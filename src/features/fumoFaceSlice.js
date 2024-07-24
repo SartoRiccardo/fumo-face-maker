@@ -1,12 +1,20 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 
+const defaultEyes = {
+  chosen: [0, 0],
+  colors: {
+    inner: ["red", "blue"],
+    outline: ["darkred", "darkblue"],
+    gradient: ["magenta", "lightblue"],
+  },
+};
+
 export const fumoFaceSlice = createSlice({
   name: "fumoFace",
   initialState: {
     eyebrows: 0,
     eyebrow2: 0,
-    eyes: 0,
-    eye2: 0,
+    eyes: { ...defaultEyes },
     eyelash: 0,
     blush: 0,
     mouth: 0,
@@ -31,10 +39,29 @@ export const fumoFaceSlice = createSlice({
       state.eyebrow2 = payload.eyebrow2;
     },
     setEyes: (state, { payload }) => {
-      state.eyes = payload.eyes;
-    },
-    setOtherEye: (state, { payload }) => {
-      state.eye2 = payload.eye2;
+      if ("chosen" in payload) {
+        for (const eyeNum of Object.keys(payload.chosen)) {
+          state.eyes.chosen[eyeNum] = payload.chosen[eyeNum];
+        }
+      }
+      if ("colors" in payload) {
+        if ("inner" in payload.colors) {
+          for (const eyeNum of Object.keys(payload.colors.inner)) {
+            state.eyes.colors.inner[eyeNum] = payload.colors.inner[eyeNum];
+          }
+        }
+        if ("outline" in payload.colors) {
+          for (const eyeNum of Object.keys(payload.colors.outline)) {
+            state.eyes.colors.outline[eyeNum] = payload.colors.outline[eyeNum];
+          }
+        }
+        if ("gradient" in payload.colors) {
+          for (const eyeNum of Object.keys(payload.colors.gradient)) {
+            state.eyes.colors.gradient[eyeNum] =
+              payload.colors.gradient[eyeNum];
+          }
+        }
+      }
     },
     setBlush: (state, { payload }) => {
       state.blush = payload.blush;
@@ -71,11 +98,7 @@ export const fumoFaceSlice = createSlice({
 
 const blackColor = {
   color: "black",
-  description: (
-    <>
-      The color of the eyebrows and mouth. <b>You should keep it black.</b>
-    </>
-  ),
+  description: <>The color of the eyebrows and mouth.</>,
 };
 
 const threadColorSelector = (fumoFace) => {
@@ -83,10 +106,7 @@ const threadColorSelector = (fumoFace) => {
     {
       color: "white",
       description: (
-        <>
-          The color of the little eye shine on the top left of each eye.{" "}
-          <b>You should keep it white.</b>
-        </>
+        <>The color of the little eye shine on the top left of each eye.</>
       ),
     },
   ];
@@ -96,26 +116,26 @@ const threadColorSelector = (fumoFace) => {
       0,
       0,
       {
-        color: "red",
+        color: fumoFace.eyes.colors.inner[0],
         description: (
           <>
-            The color of the <b>left</b> eye. Can be any color you want.
+            The color of the <b>left</b> eye.
           </>
         ),
       },
       {
-        color: "blue",
+        color: fumoFace.eyes.colors.inner[1],
         description: (
           <>
-            The color of the <b>right</b> eye. Can be any color you want.
+            The color of the <b>right</b> eye.
           </>
         ),
       }
     );
   } else {
     threadColors.splice(0, 0, {
-      color: "red",
-      description: <>The color of the eyes. Can be any color you want.</>,
+      color: fumoFace.eyes.colors.inner[0],
+      description: <>The color of the eyes.</>,
     });
   }
 
@@ -123,30 +143,26 @@ const threadColorSelector = (fumoFace) => {
     if (fumoFace.hasHeterochromia) {
       threadColors.push(
         {
-          color: "darkred",
+          color: fumoFace.eyes.colors.outline[0],
           description: (
             <>
-              The color of the outline of the <b>left</b> eye. Can be any color
-              you want.
+              The color of the outline of the <b>left</b> eye.
             </>
           ),
         },
         {
-          color: "darkblue",
+          color: fumoFace.eyes.colors.outline[1],
           description: (
             <>
-              The color of the outline of the <b>right</b> eye. Can be any color
-              you want.
+              The color of the outline of the <b>right</b> eye.
             </>
           ),
         }
       );
     } else {
       threadColors.push({
-        color: "darkred",
-        description: (
-          <>The color of the outline of the eyes. Can be any color you want.</>
-        ),
+        color: fumoFace.eyes.colors.outline[0],
+        description: <>The color of the outline of the eyes.</>,
       });
     }
   }
@@ -170,11 +186,7 @@ const threadColorSelector = (fumoFace) => {
     threadColors.push(
       {
         color: "red",
-        description: (
-          <>
-            The color of the tongue. <b>You should keep it a reddish color.</b>
-          </>
-        ),
+        description: <>The color of the tongue.</>,
       },
       blackColor
     );
@@ -182,19 +194,11 @@ const threadColorSelector = (fumoFace) => {
     threadColors.push(
       {
         color: "white",
-        description: (
-          <>
-            The color of the mouth's teeth. <b>You should keep it white.</b>
-          </>
-        ),
+        description: <>The color of the mouth's teeth.</>,
       },
       {
         color: "salmon",
-        description: (
-          <>
-            The color inside the mouth. <b>You should keep a pinkish color.</b>
-          </>
-        ),
+        description: <>The color inside the mouth.</>,
       },
       blackColor
     );
@@ -219,6 +223,8 @@ export const getFaceQuery = (fumoFace) => {
 
 export const getFaceFromQuery = (query, options) => {
   const face = {};
+  face.eyes = { ...defaultEyes };
+
   if (
     "eb" in query &&
     0 <= parseInt(query.eb) &&
@@ -229,8 +235,9 @@ export const getFaceFromQuery = (query, options) => {
     "ey" in query &&
     0 <= parseInt(query.ey) &&
     parseInt(query.ey) < options.eyes
-  )
-    face.eyes = parseInt(query.ey);
+  ) {
+    face.eyes.chosen[0] = parseInt(query.ey);
+  }
   if (
     "el" in query &&
     0 <= parseInt(query.el) &&

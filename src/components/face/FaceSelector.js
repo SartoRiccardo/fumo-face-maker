@@ -32,11 +32,11 @@ export default function FaceSelector({ faceOptions }) {
         options={faceOptions.eyebrows}
         onChange={(eyebrows) => {
           dispatch(setEyebrows({ eyebrows }));
-          window.history.replaceState(
-            null,
-            document.title,
-            `?${getFaceQuery({ ...fumoFace, eyebrows })}`
-          );
+          // window.history.replaceState(
+          //   null,
+          //   document.title,
+          //   `?${getFaceQuery({ ...fumoFace, eyebrows })}`
+          // );
         }}
         value={fumoFace.eyebrows}
       >
@@ -45,21 +45,21 @@ export default function FaceSelector({ faceOptions }) {
       <OptionShift
         options={faceOptions.eyes}
         onChange={(eyes) => {
-          dispatch(setEyes({ eyes }));
-          window.history.replaceState(
-            null,
-            document.title,
-            `?${getFaceQuery({ ...fumoFace, eyes })}`
-          );
+          dispatch(setEyes({ chosen: { 0: eyes } }));
+          // window.history.replaceState(
+          //   null,
+          //   document.title,
+          //   `?${getFaceQuery({ ...fumoFace, eyes })}`
+          // );
         }}
-        value={fumoFace.eyes}
+        value={fumoFace.eyes.chosen[0]}
       >
         <div
           className={`eyes ${
             fumoFace.hasHeterochromia ? "heterochromatic" : ""
           } ${fumoFace.hasDifferentEyeOutline ? "diff-outline" : ""}`}
         >
-          {EYES[fumoFace.eyes][fumoFace.eyelash]}
+          {EYES[fumoFace.eyes.chosen[0]][fumoFace.eyelash]}
         </div>
       </OptionShift>
       {fumoFace.hasBlush && (
@@ -67,11 +67,11 @@ export default function FaceSelector({ faceOptions }) {
           options={faceOptions.blushes}
           onChange={(blush) => {
             dispatch(setBlush({ blush }));
-            window.history.replaceState(
-              null,
-              document.title,
-              `?${getFaceQuery({ ...fumoFace, blush })}`
-            );
+            // window.history.replaceState(
+            //   null,
+            //   document.title,
+            //   `?${getFaceQuery({ ...fumoFace, blush })}`
+            // );
           }}
           value={fumoFace.blush}
         >
@@ -82,11 +82,11 @@ export default function FaceSelector({ faceOptions }) {
         options={faceOptions.mouths}
         onChange={(mouth) => {
           dispatch(setMouth({ mouth }));
-          window.history.replaceState(
-            null,
-            document.title,
-            `?${getFaceQuery({ ...fumoFace, mouth })}`
-          );
+          // window.history.replaceState(
+          //   null,
+          //   document.title,
+          //   `?${getFaceQuery({ ...fumoFace, mouth })}`
+          // );
         }}
         value={fumoFace.mouth}
         counterPos={"up"}
