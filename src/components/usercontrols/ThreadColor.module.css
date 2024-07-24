@@ -1,0 +1,20 @@
+.color {
+  width: 19px;
+  height: 19px;
+  border: 1px solid black;
+  margin: 3px;
+}
+
+.unchangable {
+  display: inline-block;
+  margin: 0.2rem 0.2rem 0 0.2rem;
+}
+
+.changable {
+  width: 25px;
+  height: 25px;
+  margin: 0.2rem 0.2rem 0 0.2rem;
+  border-width: 2px;
+  border-radius: 3px;
+  display: inline-block;
+}

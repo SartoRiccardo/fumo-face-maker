@@ -1,6 +1,6 @@
 "use client";
 import styles from "./ThreadColorOverview.module.css";
-import ThreadColor from "./ThreadColor";
+import ThreadColor from "../usercontrols/ThreadColor";
 import { useAppSelector } from "@/lib/store";
 import { selectThreadColors } from "@/features/fumoFaceSlice";
 import { useState } from "react";
@@ -22,9 +22,13 @@ export default function ThreadColorOverview() {
             </div>
           </div>
           <div className={"col"}>
-            {threadColors.map(({ color }, i) => (
-              <ThreadColor key={i} color={color} />
-            ))}
+            {threadColors.map(({ idx, key, color }, i) =>
+              idx !== undefined && key ? (
+                <ThreadColor key={i} color={color} onClick={() => null} />
+              ) : (
+                <ThreadColor key={i} color={color} />
+              )
+            )}
           </div>
           <div className={"col-auto"}>
             <div className={"d-flex flex-column justify-content-center h-100"}>

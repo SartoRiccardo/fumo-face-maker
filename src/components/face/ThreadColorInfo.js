@@ -1,7 +1,7 @@
 "use client";
 import Modal from "react-bootstrap/Modal";
 import { useAppSelector } from "@/lib/store";
-import ThreadColor from "./ThreadColor";
+import ThreadColor from "../usercontrols/ThreadColor";
 import { selectThreadColors } from "@/features/fumoFaceSlice";
 import { atma } from "@/lib/fonts";
 import Button from "../usercontrols/Button";
@@ -27,10 +27,14 @@ export default function ThreadColorInfo({ show, onHide }) {
           put the threads in the correct order you'll be fine.
         </p>
         <hr />
-        {threadColors.map(({ color, description }, i) => (
+        {threadColors.map(({ key, idx, color, description }, i) => (
           <div className={"row"} key={i}>
             <div className={"col-auto"}>
-              <ThreadColor color={color} />
+              {key && idx !== undefined ? (
+                <ThreadColor color={color} onClick={() => null} />
+              ) : (
+                <ThreadColor color={color} />
+              )}
             </div>
             <div className={"col"}>
               <div

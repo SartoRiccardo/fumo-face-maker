@@ -116,6 +116,8 @@ const threadColorSelector = (fumoFace) => {
       0,
       0,
       {
+        key: "inner",
+        idx: 1,
         color: fumoFace.eyes.colors.inner[0],
         description: (
           <>
@@ -124,6 +126,8 @@ const threadColorSelector = (fumoFace) => {
         ),
       },
       {
+        key: "inner",
+        idx: 1,
         color: fumoFace.eyes.colors.inner[1],
         description: (
           <>
@@ -134,6 +138,8 @@ const threadColorSelector = (fumoFace) => {
     );
   } else {
     threadColors.splice(0, 0, {
+      key: "inner",
+      idx: 0,
       color: fumoFace.eyes.colors.inner[0],
       description: <>The color of the eyes.</>,
     });
@@ -143,6 +149,8 @@ const threadColorSelector = (fumoFace) => {
     if (fumoFace.hasHeterochromia) {
       threadColors.push(
         {
+          key: "outline",
+          idx: 0,
           color: fumoFace.eyes.colors.outline[0],
           description: (
             <>
@@ -151,6 +159,8 @@ const threadColorSelector = (fumoFace) => {
           ),
         },
         {
+          key: "outline",
+          idx: 1,
           color: fumoFace.eyes.colors.outline[1],
           description: (
             <>
@@ -161,6 +171,8 @@ const threadColorSelector = (fumoFace) => {
       );
     } else {
       threadColors.push({
+        key: "outline",
+        idx: 0,
         color: fumoFace.eyes.colors.outline[0],
         description: <>The color of the outline of the eyes.</>,
       });
