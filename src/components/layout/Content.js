@@ -48,11 +48,11 @@ export default function Content({ faceOptions }) {
                   <ButtonSelector
                     onChange={(eyelash) => {
                       dispatch(setEyelash({ eyelash }));
-                      window.history.replaceState(
-                        null,
-                        document.title,
-                        `?${getFaceQuery({ ...fumoFace, eyelash })}`
-                      );
+                      // window.history.replaceState(
+                      //   null,
+                      //   document.title,
+                      //   `?${getFaceQuery({ ...fumoFace, eyelash })}`
+                      // );
                     }}
                     value={fumoFace.eyelash}
                   >

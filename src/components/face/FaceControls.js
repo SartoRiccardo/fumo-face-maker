@@ -49,11 +49,11 @@ export default function FaceControls() {
         value={fumoFace.hasHeterochromia}
         onChange={(hasHeterochromia) => {
           dispatch(setHasHeterochromia({ hasHeterochromia }));
-          window.history.replaceState(
-            null,
-            document.title,
-            `?${getFaceQuery({ ...fumoFace, hasHeterochromia })}`
-          );
+          // window.history.replaceState(
+          //   null,
+          //   document.title,
+          //   `?${getFaceQuery({ ...fumoFace, hasHeterochromia })}`
+          // );
         }}
       >
         <p>Heterochromia</p>
@@ -62,11 +62,11 @@ export default function FaceControls() {
         value={fumoFace.hasDifferentEyeOutline}
         onChange={(hasDifferentEyeOutline) => {
           dispatch(setHasDifferentEyeOutline({ hasDifferentEyeOutline }));
-          window.history.replaceState(
-            null,
-            document.title,
-            `?${getFaceQuery({ ...fumoFace, hasDifferentEyeOutline })}`
-          );
+          // window.history.replaceState(
+          //   null,
+          //   document.title,
+          //   `?${getFaceQuery({ ...fumoFace, hasDifferentEyeOutline })}`
+          // );
         }}
       >
         <p>Different Eye Outline Color</p>

@@ -7,6 +7,7 @@ import {
   setEyes,
   setBlush,
   setMouth,
+  selectFumoFace,
 } from "@/features/fumoFaceSlice";
 import FaceSelectorPlc from "../placeholders/FaceSelectorPlc";
 import { getBlushes, getEyebrows, getMouths, getEyes } from "./svgParts";
@@ -19,7 +20,7 @@ const BLUSHES = getBlushes(100, 100);
 const MOUTHS = getMouths(300 / 2.5, 100 / 2.5);
 
 export default function FaceSelector({ faceOptions }) {
-  const fumoFace = useAppSelector((state) => state.fumoFace);
+  const fumoFace = useAppSelector(selectFumoFace);
   const dispatch = useAppDispatch();
   const isLoading = faceOptions === null;
   const router = useRouter();

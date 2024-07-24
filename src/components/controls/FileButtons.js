@@ -13,7 +13,7 @@ export default function FileButtons() {
   const generateFace = async (_e) => {
     setDownloading(true);
     const params = new URLSearchParams({
-      eyes: fumoFace.eyes + 1,
+      eyes: fumoFace.eyes.chosen[0] + 1,
       eyelashes: fumoFace.eyelash + 1,
       eyebrows: fumoFace.eyebrows + 1,
       mouth: fumoFace.mouth + 1,
