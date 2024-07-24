@@ -1,16 +1,21 @@
 "use client";
 import styles from "./ThreadColorOverview.module.css";
 import ThreadColor from "../usercontrols/ThreadColor";
-import { useAppSelector } from "@/lib/store";
-import { selectThreadColors } from "@/features/fumoFaceSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/store";
+import { selectThreadColors, setEyes } from "@/features/fumoFaceSlice";
 import { useState } from "react";
-import ThreadColorInfo from "./ThreadColorInfo";
+import ThreadColorInfo from "../modals/ThreadColorInfoMod";
 import { atma } from "@/lib/fonts";
 import { onSpacePress } from "@/utils/events";
+import ColorPickerMod from "../modals/ColorPickerMod";
 
 export default function ThreadColorOverview() {
   const threadColors = useAppSelector(selectThreadColors);
-  const [showModal, setShowModal] = useState(false);
+  const dispatch = useAppDispatch();
+  const [showInfoModal, setShowInfoModal] = useState(false);
+  const [showColorPicker, setShowColorPicker] = useState(false);
+  const [colorKey, setColorKey] = useState("inner");
+  const [colorIdx, setColorIdx] = useState(0);
 
   return (
     <>
@@ -24,7 +29,15 @@ export default function ThreadColorOverview() {
           <div className={"col"}>
             {threadColors.map(({ idx, key, color }, i) =>
               idx !== undefined && key ? (
-                <ThreadColor key={i} color={color} onClick={() => null} />
+                <ThreadColor
+                  key={i}
+                  color={color}
+                  onClick={(_e) => {
+                    setColorKey(key);
+                    setColorIdx(idx);
+                    setShowColorPicker(true);
+                  }}
+                />
               ) : (
                 <ThreadColor key={i} color={color} />
               )
@@ -36,15 +49,25 @@ export default function ThreadColorOverview() {
                 <i
                   tabIndex={0}
                   className={styles.info + " bi-info-circle-fill"}
-                  onClick={(_e) => setShowModal(true)}
-                  onKeyDown={onSpacePress((_e) => setShowModal(true))}
+                  onClick={(_e) => setShowInfoModal(true)}
+                  onKeyDown={onSpacePress((_e) => setShowInfoModal(true))}
                 ></i>
               </p>
             </div>
           </div>
         </div>
       </div>
-      <ThreadColorInfo show={showModal} onHide={(_e) => setShowModal(false)} />
+      <ThreadColorInfo
+        show={showInfoModal}
+        onHide={(_e) => setShowInfoModal(false)}
+      />
+      <ColorPickerMod
+        show={showColorPicker}
+        onHide={(_e) => setShowColorPicker(false)}
+        onSelect={(clr) =>
+          dispatch(setEyes({ colors: { [colorKey]: { [colorIdx]: clr } } }))
+        }
+      />
     </>
   );
 }

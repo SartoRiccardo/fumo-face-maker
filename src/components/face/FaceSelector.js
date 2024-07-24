@@ -11,8 +11,7 @@ import {
 } from "@/features/fumoFaceSlice";
 import FaceSelectorPlc from "../placeholders/FaceSelectorPlc";
 import { getBlushes, getEyebrows, getMouths, getEyes } from "./svgParts";
-import { useRouter } from "next/navigation";
-import { getFaceQuery } from "@/features/fumoFaceSlice";
+import { cloneElement } from "react";
 
 const EYEBROWS = getEyebrows(800 / 2.5, 110 / 2.5);
 const EYES = getEyes(300 * 1.2, 100 * 1.2);
@@ -23,7 +22,6 @@ export default function FaceSelector({ faceOptions }) {
   const fumoFace = useAppSelector(selectFumoFace);
   const dispatch = useAppDispatch();
   const isLoading = faceOptions === null;
-  const router = useRouter();
 
   return isLoading ? (
     <FaceSelectorPlc />
@@ -50,7 +48,9 @@ export default function FaceSelector({ faceOptions }) {
             fumoFace.hasHeterochromia ? "heterochromatic" : ""
           } ${fumoFace.hasDifferentEyeOutline ? "diff-outline" : ""}`}
         >
-          {EYES[fumoFace.eyes.chosen[0]][fumoFace.eyelash]}
+          {cloneElement(EYES[fumoFace.eyes.chosen[0]][fumoFace.eyelash], {
+            style: { stroke: fumoFace.eyes.colors.inner[0] },
+          })}
         </div>
       </OptionShift>
       {fumoFace.hasBlush && (
