@@ -1,17 +1,27 @@
+/* Right eye inner */
+.eyes > svg > path:nth-child(1) {
+  stroke: var(--clr-inn0);
+}
+
+/* Left eye inner */
+.eyes > svg > path:nth-child(2) {
+  stroke: var(--clr-inn0);
+}
 .heterochromatic.eyes > svg > path:nth-child(2) {
-  stroke: blue;
+  stroke: var(--clr-inn1);
 }
 
+/* Left eye outline */
 .eyes.diff-outline > svg > path:nth-child(4) {
-  stroke: darkred;
+  stroke: var(--clr-out0);
 }
 
-.heterochromatic.eyes.diff-outline > svg > path:nth-child(5) {
-  stroke: darkblue;
-}
-
+/* Right eye outline */
 .eyes.diff-outline > svg > path:nth-child(5) {
-  stroke: darkred;
+  stroke: var(--clr-out0);
+}
+.heterochromatic.eyes.diff-outline > svg > path:nth-child(5) {
+  stroke: var(--clr-out1);
 }
 
 @media only screen and (max-width: 575.98px) {

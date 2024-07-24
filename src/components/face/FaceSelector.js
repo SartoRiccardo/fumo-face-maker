@@ -44,13 +44,17 @@ export default function FaceSelector({ faceOptions }) {
         value={fumoFace.eyes.chosen[0]}
       >
         <div
+          style={{
+            "--clr-inn0": fumoFace.eyes.colors.inner[0],
+            "--clr-inn1": fumoFace.eyes.colors.inner[1],
+            "--clr-out0": fumoFace.eyes.colors.outline[0],
+            "--clr-out1": fumoFace.eyes.colors.outline[1],
+          }}
           className={`eyes ${
             fumoFace.hasHeterochromia ? "heterochromatic" : ""
           } ${fumoFace.hasDifferentEyeOutline ? "diff-outline" : ""}`}
         >
-          {cloneElement(EYES[fumoFace.eyes.chosen[0]][fumoFace.eyelash], {
-            style: { stroke: fumoFace.eyes.colors.inner[0] },
-          })}
+          {EYES[fumoFace.eyes.chosen[0]][fumoFace.eyelash]}
         </div>
       </OptionShift>
       {fumoFace.hasBlush && (
