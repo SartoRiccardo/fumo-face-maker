@@ -17,4 +17,10 @@
   border-width: 2px;
   border-radius: 3px;
   display: inline-block;
+  transition: scale 0.1s;
+}
+
+.changable:hover {
+  scale: 1.2;
+  cursor: pointer;
 }
