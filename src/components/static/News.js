@@ -3,6 +3,10 @@ import Button from "../usercontrols/Button";
 
 const NEWS_TEXT = [
   {
+    date: "4th Aug 2024",
+    desc: "Download button now works correctly.",
+  },
+  {
     date: "24th Jul 2024",
     desc: (
       <ul>
