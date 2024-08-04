@@ -6,7 +6,7 @@ let prevValue = "";
 export default function FaceUrlChanger() {
   const fumoFace = useAppSelector(selectFumoFace);
   const curQuery = `?${getFaceQuery(fumoFace)}`;
-  if (prevValue != curQuery) {
+  if (prevValue != curQuery && typeof window !== "undefined") {
     window.history.replaceState(null, document.title, curQuery);
     prevValue = curQuery;
   }
