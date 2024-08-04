@@ -6,7 +6,7 @@ import { getFaceFromQuery } from "@/features/fumoFaceSlice";
 import FaceUrlChanger from "@/components/appcontrols/FaceUrlChanger";
 
 async function getFaceOptions() {
-  const response = await fetch(process.env.NEXT_PUBLIC_BACKEND + "/face/list");
+  const response = await fetch(process.env.PRIVATE_BACKEND + "/face/list");
   return await response.json();
 }
 let faceOptions = null;
