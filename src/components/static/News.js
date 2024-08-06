@@ -7,7 +7,13 @@ const NEWS_TEXT = [
     desc: (
       <ul>
         <li>Removed a faulty thread color</li>
-        <li>Downloaded file names are more descriptive</li>
+        <li>Can now choose the exported filename</li>
+        <li>
+          Can now export in both DST and PES (DST mostly used for fallbacks)
+          <ul>
+            <li>Disabled PES downloads due the designs being offset</li>
+          </ul>
+        </li>
       </ul>
     ),
   },
@@ -55,7 +61,7 @@ export default function News({ show, onHide }) {
         {NEWS_TEXT.map(({ date, desc }) => (
           <div key={date}>
             <h3 className="fs-5">{date}</h3>
-            {desc instanceof String ? <p>desc</p> : desc}
+            {typeof desc === "string" ? <p>{desc}</p> : desc}
           </div>
         ))}
       </Modal.Body>
