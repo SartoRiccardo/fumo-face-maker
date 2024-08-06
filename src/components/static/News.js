@@ -10,9 +10,6 @@ const NEWS_TEXT = [
         <li>Can now choose the exported filename</li>
         <li>
           Can now export in both DST and PES (DST mostly used for fallbacks)
-          <ul>
-            <li>Disabled PES downloads due the designs being offset</li>
-          </ul>
         </li>
       </ul>
     ),

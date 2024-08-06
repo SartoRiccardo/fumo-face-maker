@@ -9,7 +9,7 @@ import download from "downloadjs";
 export default function DownloadModal({ show, onHide }) {
   const fumoFace = useAppSelector(selectFumoFace);
   const [filename, setFilename] = useState("generated-file");
-  const [format, setFormat] = useState("DST");
+  const [format, setFormat] = useState("PES");
   const [isDownloading, setDownloading] = useState(false);
 
   const generateFace = async (_e) => {
@@ -53,11 +53,6 @@ export default function DownloadModal({ show, onHide }) {
     <Modal show={show} onHide={(_e) => !isDownloading && onHide(_e)} size="lg">
       <Modal.Body>
         <h3 className={" text-center"}>Download</h3>
-        <p>
-          Note: PES files are currently under maintenance, so only DST download
-          is available (it works on all machines, but doesn't have thread color
-          data).
-        </p>
         <form className="row">
           <div className="col-12 col-sm-8 col-md-9 col-lg-10">
             <input
@@ -75,7 +70,7 @@ export default function DownloadModal({ show, onHide }) {
               value={format}
             >
               <option value="DST">DST</option>
-              {/* <option value="PES">PES</option> */}
+              <option value="PES">PES</option>
             </select>
           </div>
           <div className="d-flex justify-content-center col-12">
