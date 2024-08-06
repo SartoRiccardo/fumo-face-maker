@@ -35,12 +35,18 @@ export default function FileButtons() {
     if (outcols.length) paramsDict.outcols = outcols.join(",");
 
     const params = new URLSearchParams(paramsDict);
+    const fnameAddons = `+${fumoFace.hasHeterochromia ? "Het" : ""}${
+      fumoFace.hasDifferentEyeOutline ? "Dco" : ""
+    }`;
+    const filename = `fumoface-E${fumoFace.eyes.chosen[0] + 1}L${
+      fumoFace.eyelash + 1
+    }B${fumoFace.eyebrows + 1}M${fumoFace.mouth + 1}${fnameAddons}.PES`;
     try {
       const response = await fetch(
         process.env.NEXT_PUBLIC_BACKEND + "/face?" + params.toString()
       );
       const blob = await response.blob();
-      download(blob, "generated.PES", "application/octet-stream");
+      download(blob, filename, "application/octet-stream");
     } catch (ex) {}
 
     setDownloading(false);

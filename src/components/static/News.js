@@ -3,6 +3,15 @@ import Button from "../usercontrols/Button";
 
 const NEWS_TEXT = [
   {
+    date: "6th Aug 2024",
+    desc: (
+      <ul>
+        <li>Removed a faulty thread color</li>
+        <li>Downloaded file names are more descriptive</li>
+      </ul>
+    ),
+  },
+  {
     date: "4th Aug 2024",
     desc: "Download button now works correctly.",
   },
