@@ -47,6 +47,7 @@ export default function DownloadModal({ show, onHide }) {
     } catch (ex) {}
 
     setDownloading(false);
+    onHide(_e);
   };
 
   return (
@@ -69,8 +70,8 @@ export default function DownloadModal({ show, onHide }) {
               onChange={(e) => setFormat(e.target.value.toUpperCase())}
               value={format}
             >
-              <option value="DST">DST</option>
               <option value="PES">PES</option>
+              <option value="DST">DST</option>
             </select>
           </div>
           <div className="d-flex justify-content-center col-12">
