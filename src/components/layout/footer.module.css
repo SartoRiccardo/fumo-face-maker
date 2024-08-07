@@ -2,10 +2,12 @@
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   font-size: 0.8rem;
+  background-color: #e0f7fa;
 }
 
 .hr {
   width: 70%;
   margin: 1rem auto;
+  margin-top: 0;
   color: #006064;
 }
