@@ -3,6 +3,22 @@ import Button from "../usercontrols/Button";
 
 const NEWS_TEXT = [
   {
+    date: "Xth Jan 2025",
+    desc: (
+      <ul>
+        <li>You can now generate gradient eyes!</li>
+        <li>Can now choose two different types of eyes</li>
+        <li>Added Eyebrow #14</li>
+        <li>Added Mouths #20-25</li>
+        <li>Generated PES files are lighter</li>
+        <li>
+          With this update, I've set the foundation to make more eye fill colors
+          and different eyebrows. They will come in a future update.
+        </li>
+      </ul>
+    ),
+  },
+  {
     date: "7th Aug 2024",
     desc: "Background!",
   },
