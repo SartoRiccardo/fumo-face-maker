@@ -1,6 +1,5 @@
 "use client";
-import "./FaceSelector.css";
-import OptionShift from "../usercontrols/OptionShift";
+import cssFaceSelector from "./FaceSelector.module.css";
 import { useAppSelector, useAppDispatch } from "@/lib/store";
 import {
   setEyebrows,
@@ -10,13 +9,8 @@ import {
   selectFumoFace,
 } from "@/features/fumoFaceSlice";
 import FaceSelectorPlc from "../placeholders/FaceSelectorPlc";
-import { getBlushes, getEyebrows, getMouths, getEyes } from "./svgParts";
-import { cloneElement } from "react";
-
-const EYEBROWS = getEyebrows(800 / 2.5, 110 / 2.5);
-const EYES = getEyes(300 * 1.2, 100 * 1.2);
-const BLUSHES = getBlushes(100, 100);
-const MOUTHS = getMouths(300 / 2.5, 100 / 2.5);
+import OptionShift from "../usercontrols/OptionShift";
+import { atma } from "@/lib/fonts";
 
 export default function FaceSelector({ faceOptions }) {
   const fumoFace = useAppSelector(selectFumoFace);
@@ -26,8 +20,82 @@ export default function FaceSelector({ faceOptions }) {
   return isLoading ? (
     <FaceSelectorPlc />
   ) : (
-    <div className={"panel shadow face-selector"}>
-      <OptionShift
+    <div className="panel shadow face-selector row gx-0 p-relative">
+      <div className="col-auto">
+        <div className="h-100 py-2 d-flex flex-column justify-content-between">
+          <OptionShift
+            type="prev"
+            options={faceOptions.eyebrows}
+            value={fumoFace.eyebrows}
+            onChange={(eyebrows) => dispatch(setEyebrows({ eyebrows }))}
+          />
+          <OptionShift
+            type="prev"
+            options={faceOptions.eyes}
+            value={fumoFace.eyes.chosen[0]}
+            onChange={(eyes) => dispatch(setEyes({ chosen: { 0: eyes } }))}
+          />
+          <OptionShift
+            type="prev"
+            options={faceOptions.mouths}
+            value={fumoFace.mouth}
+            onChange={(mouth) => dispatch(setMouth({ mouth }))}
+          />
+        </div>
+      </div>
+
+      <svg
+        className="col"
+        viewBox="-50 -50 100 50"
+        style={{ border: "1px solid red" }}
+      ></svg>
+
+      <div className="col-auto d-flex flex-column justify-content-between">
+        <div className="h-100 py-2 d-flex flex-column justify-content-between">
+          <OptionShift
+            type="next"
+            options={faceOptions.eyebrows}
+            value={fumoFace.eyebrows}
+            onChange={(eyebrows) => dispatch(setEyebrows({ eyebrows }))}
+          />
+          <OptionShift
+            type="next"
+            options={faceOptions.eyes}
+            value={fumoFace.eyes.chosen[0]}
+            onChange={(eyes) => dispatch(setEyes({ chosen: { 0: eyes } }))}
+          />
+          <OptionShift
+            type="next"
+            options={faceOptions.mouths}
+            value={fumoFace.mouth}
+            onChange={(mouth) => dispatch(setMouth({ mouth }))}
+          />
+        </div>
+      </div>
+
+      <div className={cssFaceSelector.label_container}>
+        <div className="h-100 py-2 d-flex flex-column justify-content-between">
+          <p
+            className={`${atma.className} ${cssFaceSelector.counter} fs-3`}
+            key={`eyebrows-${fumoFace.eyebrows}`}
+          >
+            {fumoFace.eyebrows + 1}/{faceOptions.eyebrows}
+          </p>
+          <p
+            className={`${atma.className} ${cssFaceSelector.counter} fs-3`}
+            key={`eyes-${fumoFace.eyes.chosen[0]}`}
+          >
+            {fumoFace.eyes.chosen[0] + 1}/{faceOptions.eyes}
+          </p>
+          <p
+            className={`${atma.className} ${cssFaceSelector.counter} fs-3`}
+            key={`mouth-${fumoFace.mouth}`}
+          >
+            {fumoFace.mouth + 1}/{faceOptions.mouths}
+          </p>
+        </div>
+      </div>
+      {/* <OptionShift
         options={faceOptions.eyebrows}
         onChange={(eyebrows) => {
           dispatch(setEyebrows({ eyebrows }));
@@ -77,7 +145,7 @@ export default function FaceSelector({ faceOptions }) {
         counterPos={"up"}
       >
         <div className="mouth">{MOUTHS[fumoFace.mouth]}</div>
-      </OptionShift>
+      </OptionShift> */}
     </div>
   );
 }

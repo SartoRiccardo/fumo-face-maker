@@ -1,22 +1,24 @@
 import styles from "./OptionShift.module.css";
 import { onSpacePress } from "@/utils/events";
-import { atma } from "@/lib/fonts";
-import { useState } from "react";
 
-export default function OptionShift({
-  children,
-  options,
-  onChange,
-  value,
-  counterPos,
-}) {
-  const [isFirstRender, setFirstRender] = useState(true);
-  const counterPosCls =
-    counterPos === "up"
-      ? styles.counterUp
-      : counterPos === "down"
-      ? styles.counterDown
-      : "";
+export default function OptionShift({ options, onChange, value, type }) {
+  type = type || "prev";
+
+  return (
+    <i
+      tabIndex={0}
+      onClick={(_e) => {
+        const newval = (value + (type === "prev" ? -1 : 1) + options) % options;
+        onChange(newval);
+      }}
+      onKeyDown={onSpacePress((_e) =>
+        onChange((value - 1 + options) % options)
+      )}
+      className={`${styles.button} ${
+        type === "prev" ? "bi-chevron-left" : "bi-chevron-right"
+      }`}
+    />
+  );
 
   return (
     <div className={"row"}>
@@ -38,6 +40,7 @@ export default function OptionShift({
           </div>
         </div>
       </div>
+
       <div className={"col"}>
         <div className={styles.inner + " d-flex justify-content-center"}>
           <div className={"d-flex justify-content-center flex-column"}>
@@ -53,6 +56,7 @@ export default function OptionShift({
           </p>
         </div>
       </div>
+
       <div
         className={"col-auto"}
         onClick={(_e) => onChange((value + 1) % options)}
