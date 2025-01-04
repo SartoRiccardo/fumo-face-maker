@@ -4,11 +4,8 @@ import Footer from "../components/layout/Footer";
 import StoreProvider from "../components/StoreProvider";
 import { getFaceFromQuery } from "@/features/fumoFaceSlice";
 import FaceUrlChanger from "@/components/appcontrols/FaceUrlChanger";
+import { getFaceOptions } from "@/requests/backend";
 
-async function getFaceOptions() {
-  const response = await fetch(process.env.PRIVATE_BACKEND + "/face/list");
-  return await response.json();
-}
 let faceOptions = null;
 
 export default async function Home({ searchParams }) {
