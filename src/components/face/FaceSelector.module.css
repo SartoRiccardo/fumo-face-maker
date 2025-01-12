@@ -20,6 +20,12 @@
   transform: scale(1.5);
 }
 
+.face polyline {
+  stroke-width: 0.3px;
+  stroke-linejoin: bevel;
+  fill: none;
+}
+
 @keyframes fade {
   from {
     opacity: 1;

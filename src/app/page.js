@@ -6,20 +6,16 @@ import { getFaceFromQuery } from "@/features/fumoFaceSlice";
 import FaceUrlChanger from "@/components/appcontrols/FaceUrlChanger";
 import { getFaceOptions } from "@/requests/backend";
 
-let faceOptions = null;
-
 export default async function Home({ searchParams }) {
-  if (faceOptions === null) {
-    faceOptions = await getFaceOptions();
-  }
-  const fumoFace = getFaceFromQuery(searchParams, faceOptions);
+  const facePartInfo = await getFaceOptions();
+  const fumoFace = getFaceFromQuery(searchParams, facePartInfo.count);
 
   return (
     <StoreProvider initialState={{ fumoFace }}>
       <FaceUrlChanger />
-      <div className={"content"}>
+      <div className="content">
         <Header />
-        <Content faceOptions={faceOptions} />
+        <Content facePartInfo={facePartInfo} />
         <Footer />
       </div>
     </StoreProvider>

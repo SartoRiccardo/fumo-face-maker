@@ -4,40 +4,50 @@ import { useAppSelector, useAppDispatch } from "@/lib/store";
 import {
   setEyebrows,
   setEyes,
-  setBlush,
+  // setBlush,
   setMouth,
   selectFumoFace,
+  selectThreadColors,
 } from "@/features/fumoFaceSlice";
-import FaceSelectorPlc from "../placeholders/FaceSelectorPlc";
 import OptionShift from "../usercontrols/OptionShift";
 import { atma } from "@/lib/fonts";
 
-export default function FaceSelector({ faceOptions }) {
+export default function FaceSelector({ facePartCount, facePartSvgs }) {
   const fumoFace = useAppSelector(selectFumoFace);
+  const threadColors = useAppSelector(selectThreadColors);
   const dispatch = useAppDispatch();
-  const isLoading = faceOptions === null;
 
-  return isLoading ? (
-    <FaceSelectorPlc />
-  ) : (
+  const mouthSvgParts = facePartSvgs.mouths
+    .find(({ id }) => id === fumoFace.mouth + 1)
+    .paths.reverse();
+  const eyeSvgData = facePartSvgs.eyes.find(
+    ({ id }) => id === fumoFace.eyes.chosen[0] + 1
+  );
+  const leftPupil = eyeSvgData.left.pupils.find(({ id }) => id === 1).paths;
+  const rightPupilStartClr = fumoFace.hasHeterochromia ? leftPupil.length : 0;
+  const leftEyeClrIdx = fumoFace.hasDifferentEyeOutline
+    ? leftPupil.length + (fumoFace.hasHeterochromia && leftPupil.length) + 1
+    : -1;
+
+  return (
     <div className="panel shadow face-selector row gx-0 p-relative">
       <div className="col-auto">
         <div className="h-100 py-2 d-flex flex-column justify-content-between">
           <OptionShift
             type="prev"
-            options={faceOptions.eyebrows}
+            options={facePartCount.eyebrows}
             value={fumoFace.eyebrows}
             onChange={(eyebrows) => dispatch(setEyebrows({ eyebrows }))}
           />
           <OptionShift
             type="prev"
-            options={faceOptions.eyes}
+            options={facePartCount.eyes}
             value={fumoFace.eyes.chosen[0]}
             onChange={(eyes) => dispatch(setEyes({ chosen: { 0: eyes } }))}
           />
           <OptionShift
             type="prev"
-            options={faceOptions.mouths}
+            options={facePartCount.mouths}
             value={fumoFace.mouth}
             onChange={(mouth) => dispatch(setMouth({ mouth }))}
           />
@@ -45,28 +55,86 @@ export default function FaceSelector({ faceOptions }) {
       </div>
 
       <svg
-        className="col"
-        viewBox="-50 -50 100 50"
-        style={{ border: "1px solid red" }}
-      ></svg>
+        className={`col ${cssFaceSelector.face}`}
+        viewBox="-45 -35 90 65"
+        // style={{ border: "1px solid red" }}
+      >
+        {facePartSvgs.eyebrows
+          .find(({ id }) => id === fumoFace.eyebrows + 1)
+          .paths.map((points, i) => (
+            <polyline points={points} key={i} stroke="black" />
+          ))}
+
+        <polyline points={eyeSvgData.left.shine} stroke="white" />
+        {leftPupil.map((points, i) => (
+          <polyline points={points} key={i} stroke={threadColors[i].color} />
+        ))}
+        {eyeSvgData.left.eyelashes
+          .find(({ id }) => id === fumoFace.eyelash + 1)
+          .paths.map((points, i) => (
+            <polyline
+              points={points}
+              key={i}
+              stroke={
+                leftEyeClrIdx > 0 ? threadColors[leftEyeClrIdx].color : "black"
+              }
+            />
+          ))}
+
+        <polyline points={eyeSvgData.right.shine} stroke="white" />
+        {eyeSvgData.right.pupils
+          .find(({ id }) => id === 1)
+          .paths.map((points, i) => (
+            <polyline
+              points={points}
+              key={i}
+              stroke={threadColors[i + rightPupilStartClr].color}
+            />
+          ))}
+        {eyeSvgData.right.eyelashes
+          .find(({ id }) => id === fumoFace.eyelash + 1)
+          .paths.map((points, i) => (
+            <polyline
+              points={points}
+              key={i}
+              stroke={
+                leftEyeClrIdx > 0
+                  ? threadColors[
+                      leftEyeClrIdx + (fumoFace.hasHeterochromia && 1)
+                    ].color
+                  : "black"
+              }
+            />
+          ))}
+
+        {mouthSvgParts.map((points, i) => (
+          <polyline
+            points={points}
+            key={i}
+            stroke={
+              threadColors[threadColors.length - mouthSvgParts.length + i].color
+            }
+          />
+        ))}
+      </svg>
 
       <div className="col-auto d-flex flex-column justify-content-between">
         <div className="h-100 py-2 d-flex flex-column justify-content-between">
           <OptionShift
             type="next"
-            options={faceOptions.eyebrows}
+            options={facePartCount.eyebrows}
             value={fumoFace.eyebrows}
             onChange={(eyebrows) => dispatch(setEyebrows({ eyebrows }))}
           />
           <OptionShift
             type="next"
-            options={faceOptions.eyes}
+            options={facePartCount.eyes}
             value={fumoFace.eyes.chosen[0]}
             onChange={(eyes) => dispatch(setEyes({ chosen: { 0: eyes } }))}
           />
           <OptionShift
             type="next"
-            options={faceOptions.mouths}
+            options={facePartCount.mouths}
             value={fumoFace.mouth}
             onChange={(mouth) => dispatch(setMouth({ mouth }))}
           />
@@ -79,24 +147,24 @@ export default function FaceSelector({ faceOptions }) {
             className={`${atma.className} ${cssFaceSelector.counter} fs-3`}
             key={`eyebrows-${fumoFace.eyebrows}`}
           >
-            {fumoFace.eyebrows + 1}/{faceOptions.eyebrows}
+            {fumoFace.eyebrows + 1}/{facePartCount.eyebrows}
           </p>
           <p
             className={`${atma.className} ${cssFaceSelector.counter} fs-3`}
             key={`eyes-${fumoFace.eyes.chosen[0]}`}
           >
-            {fumoFace.eyes.chosen[0] + 1}/{faceOptions.eyes}
+            {fumoFace.eyes.chosen[0] + 1}/{facePartCount.eyes}
           </p>
           <p
             className={`${atma.className} ${cssFaceSelector.counter} fs-3`}
             key={`mouth-${fumoFace.mouth}`}
           >
-            {fumoFace.mouth + 1}/{faceOptions.mouths}
+            {fumoFace.mouth + 1}/{facePartCount.mouths}
           </p>
         </div>
       </div>
       {/* <OptionShift
-        options={faceOptions.eyebrows}
+        options={facePartCount.eyebrows}
         onChange={(eyebrows) => {
           dispatch(setEyebrows({ eyebrows }));
         }}
@@ -105,7 +173,7 @@ export default function FaceSelector({ faceOptions }) {
         <div className="eyebrows">{EYEBROWS[fumoFace.eyebrows]}</div>
       </OptionShift>
       <OptionShift
-        options={faceOptions.eyes}
+        options={facePartCount.eyes}
         onChange={(eyes) => {
           dispatch(setEyes({ chosen: { 0: eyes } }));
         }}
@@ -127,7 +195,7 @@ export default function FaceSelector({ faceOptions }) {
       </OptionShift>
       {fumoFace.hasBlush && (
         <OptionShift
-          options={faceOptions.blushes}
+          options={facePartCount.blushes}
           onChange={(blush) => {
             dispatch(setBlush({ blush }));
           }}
@@ -137,7 +205,7 @@ export default function FaceSelector({ faceOptions }) {
         </OptionShift>
       )}
       <OptionShift
-        options={faceOptions.mouths}
+        options={facePartCount.mouths}
         onChange={(mouth) => {
           dispatch(setMouth({ mouth }));
         }}

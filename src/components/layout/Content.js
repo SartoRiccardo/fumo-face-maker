@@ -7,11 +7,7 @@ import ButtonSelector from "../usercontrols/ButtonSelector";
 import FileButtons from "../usercontrols/FileButtons";
 import Accordion from "react-bootstrap/Accordion";
 import { useAppDispatch, useAppSelector } from "@/lib/store";
-import {
-  selectFumoFace,
-  getFaceQuery,
-  setEyelash,
-} from "@/features/fumoFaceSlice";
+import { selectFumoFace, setEyelash } from "@/features/fumoFaceSlice";
 import Lash1 from "../../../public/images/eyelashes/lash-1.svg";
 import Lash2 from "../../../public/images/eyelashes/lash-2.svg";
 import Lash3 from "../../../public/images/eyelashes/lash-3.svg";
@@ -19,13 +15,11 @@ import Lash4 from "../../../public/images/eyelashes/lash-4.svg";
 import Lash5 from "../../../public/images/eyelashes/lash-5.svg";
 import Lash6 from "../../../public/images/eyelashes/lash-6.svg";
 import Lash7 from "../../../public/images/eyelashes/lash-7.svg";
-import { useRouter } from "next/navigation";
 
 let LASH_W, LASH_H;
 LASH_W = LASH_H = "2rem";
 
-export default function Content({ faceOptions }) {
-  const router = useRouter();
+export default function Content({ facePartInfo }) {
   const fumoFace = useAppSelector(selectFumoFace);
   const dispatch = useAppDispatch();
 
@@ -34,7 +28,10 @@ export default function Content({ faceOptions }) {
       <div className={styles.container + " container"}>
         <div className={"row"}>
           <div className={"col-12 col-lg-7 col-xl-6"}>
-            <FaceSelector faceOptions={faceOptions} />
+            <FaceSelector
+              facePartCount={facePartInfo.count}
+              facePartSvgs={facePartInfo.svg_paths}
+            />
             <ThreadColorOverview />
             <FileButtons />
           </div>
