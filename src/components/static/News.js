@@ -7,10 +7,19 @@ const NEWS_TEXT = [
     desc: (
       <ul>
         <li>You can now generate gradient eyes!</li>
-        <li>Can now choose two different types of eyes</li>
         <li>Added Eyebrow #14</li>
         <li>Added Mouths #20-25</li>
-        <li>Generated PES files are lighter</li>
+        <li>
+          Generated PES files are lighter, but harder to edit in PE Design
+          <ul>
+            <li>
+              This is fine by me as the files generated from this website are
+              generally meant to be used as-is
+            </li>
+          </ul>
+        </li>
+        <li>"Share" button actually gives visual feedback when it's pressed</li>
+        <li>Face previews are rendered to scale across all devices</li>
         <li>
           With this update, I've set the foundation to make more eye fill colors
           and different eyebrows. They will come in a future update.

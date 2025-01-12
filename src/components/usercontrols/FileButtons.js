@@ -1,4 +1,5 @@
-import { useState } from "react";
+import cssToast from "./Toast.module.css";
+import { useEffect, useState } from "react";
 import Button from "./Button";
 import { useAppSelector } from "@/lib/store";
 import { selectFumoFace } from "@/features/fumoFaceSlice";
@@ -9,6 +10,11 @@ import DownloadModal from "../modals/DownloadModal";
 export default function FileButtons() {
   const fumoFace = useAppSelector(selectFumoFace);
   const [dlModOpen, setDlModOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (copied) setTimeout(() => setCopied(false), 2_000);
+  }, [copied]);
 
   return (
     <>
@@ -19,16 +25,24 @@ export default function FileButtons() {
 
         <Button
           className={"mx-2"}
-          onClick={async (_e) =>
+          onClick={async (_e) => {
             await copyToClipboard(
               `${window.location.protocol}//${
                 window.location.host
               }/?${getFaceQuery(fumoFace)}`
-            )
-          }
+            );
+            setCopied(true);
+          }}
         >
-          <i className="bi bi-share" />
+          <i className={`bi ${copied ? "bi-check2" : "bi-share"}`} />
         </Button>
+        <div
+          className={`${cssToast.toast} ${
+            copied ? cssToast.shown : cssToast.hidden
+          }`}
+        >
+          Copied face URL to clipboard!
+        </div>
 
         <a
           href="https://github.com/SartoRiccardo/fumo-face-maker"

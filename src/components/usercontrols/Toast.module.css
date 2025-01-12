@@ -1,0 +1,21 @@
+.toast {
+  position: fixed;
+  bottom: 1rem;
+  left: 1.5rem;
+  background-color: #a5d6a7;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.toast.shown {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.toast.hidden {
+  transform: translateX(-2rem);
+  opacity: 0;
+  pointer-events: none;
+}
