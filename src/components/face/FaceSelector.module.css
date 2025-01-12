@@ -26,6 +26,10 @@
   fill: none;
 }
 
+.no_animation .counter {
+  animation-duration: 0s;
+}
+
 @keyframes fade {
   from {
     opacity: 1;

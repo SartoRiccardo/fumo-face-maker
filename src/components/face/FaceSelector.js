@@ -10,11 +10,13 @@ import {
 } from "@/features/fumoFaceSlice";
 import OptionShift from "../usercontrols/OptionShift";
 import { atma } from "@/lib/fonts";
+import { useIsFirstRender } from "@/utils/hooks";
 
 export default function FaceSelector({ facePartCount, facePartSvgs }) {
   const fumoFace = useAppSelector(selectFumoFace);
   const threadColors = useAppSelector(selectThreadColors);
   const dispatch = useAppDispatch();
+  const isFirstRender = useIsFirstRender();
 
   const mouthSvgParts = facePartSvgs.mouths.find(
     ({ id }) => id === fumoFace.mouth + 1
@@ -150,7 +152,11 @@ export default function FaceSelector({ facePartCount, facePartSvgs }) {
         </div>
       </div>
 
-      <div className={cssFaceSelector.label_container}>
+      <div
+        className={`${cssFaceSelector.label_container} ${
+          isFirstRender ? cssFaceSelector.no_animation : ""
+        }`}
+      >
         <div className="h-100 py-2 d-flex flex-column justify-content-between">
           <p
             className={`${atma.className} ${cssFaceSelector.counter} fs-3`}

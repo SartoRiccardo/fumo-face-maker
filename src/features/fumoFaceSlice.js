@@ -3,9 +3,9 @@ import { createSelector, createSlice } from "@reduxjs/toolkit";
 const defaultEyes = {
   chosen: [0, 0],
   colors: {
-    inner: ["red", "blue"],
-    outline: ["darkred", "darkblue"],
-    gradient: ["magenta", "indigo"],
+    inner: ["#ec0000", "#0f75ff"],
+    outline: ["#69260d", "#001cdf"],
+    gradient: ["#df00b8", "#0097df"],
   },
 };
 
@@ -251,12 +251,13 @@ const threadColorSelector = (fumoFace) => {
 };
 
 export const getFaceQuery = (fumoFace) => {
-  const { eyebrows, eyes, eyelash, mouth } = fumoFace;
+  const { eyebrows, eyes, eyelash, mouth, pupil } = fumoFace;
   const params = {
     eb: eyebrows,
     ey: eyes.chosen[0],
     el: eyelash,
     mt: mouth,
+    ir: pupil,
   };
   if (fumoFace.hasBlush) params.bl = fumoFace.blush;
   if (fumoFace.hasHeterochromia) {
@@ -270,6 +271,10 @@ export const getFaceQuery = (fumoFace) => {
     if (fumoFace.hasHeterochromia) params.ocl = eyes.colors.outline.join(",");
     else params.ocl = eyes.colors.outline[0];
   }
+  if (fumoFace.pupil > 0) {
+    if (fumoFace.hasHeterochromia) params.gcl = eyes.colors.gradient.join(",");
+    else params.gcl = eyes.colors.gradient[0];
+  }
   return new URLSearchParams(params).toString();
 };
 
@@ -277,36 +282,17 @@ export const getFaceFromQuery = (query, options) => {
   const face = {};
   face.eyes = { ...defaultEyes };
 
-  if (
-    "eb" in query &&
-    0 <= parseInt(query.eb) &&
-    parseInt(query.eb) < options.eyebrows
-  )
+  if (0 <= parseInt(query?.eb) && parseInt(query?.eb) < options.eyebrows)
     face.eyebrows = parseInt(query.eb);
-  if (
-    "ey" in query &&
-    0 <= parseInt(query.ey) &&
-    parseInt(query.ey) < options.eyes
-  ) {
+  if (0 <= parseInt(query?.ey) && parseInt(query?.ey) < options.eyes)
     face.eyes.chosen[0] = parseInt(query.ey);
-  }
-  if (
-    "el" in query &&
-    0 <= parseInt(query.el) &&
-    parseInt(query.el) < options.eyelashes
-  )
+  if (0 <= parseInt(query?.el) && parseInt(query?.el) < options.eyelashes)
     face.eyelash = parseInt(query.el);
-  if (
-    "mt" in query &&
-    0 <= parseInt(query.mt) &&
-    parseInt(query.mt) < options.mouths
-  )
+  if (0 <= parseInt(query?.mt) && parseInt(query?.mt) < options.mouths)
     face.mouth = parseInt(query.mt);
-  if (
-    "bl" in query &&
-    0 <= parseInt(query.bl) &&
-    parseInt(query.bl) < options.blushes
-  ) {
+  if (0 <= parseInt(query?.ir) && parseInt(query?.ir) < options.fills)
+    face.pupil = parseInt(query.ir);
+  if (0 <= parseInt(query?.bl) && parseInt(query?.bl) < options.blushes) {
     face.blush = parseInt(query.bl);
     face.hasBlush = true;
   }
@@ -323,6 +309,12 @@ export const getFaceFromQuery = (query, options) => {
     const outcols = query.ocl.split(",");
     for (let i = 0; i < Math.min(outcols.length, 2); i++) {
       face.eyes.colors.outline[i] = outcols[i];
+    }
+  }
+  if ("gcl" in query) {
+    const gradientcols = query.gcl.split(",");
+    for (let i = 0; i < Math.min(gradientcols.length, 2); i++) {
+      face.eyes.colors.gradient[i] = gradientcols[i];
     }
   }
   return face;
