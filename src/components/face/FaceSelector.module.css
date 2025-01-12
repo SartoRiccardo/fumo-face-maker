@@ -21,7 +21,7 @@
 }
 
 .face polyline {
-  stroke-width: 0.3px;
+  stroke-width: 0.5px;
   stroke-linejoin: bevel;
   fill: none;
 }

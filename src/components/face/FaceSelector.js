@@ -4,7 +4,6 @@ import { useAppSelector, useAppDispatch } from "@/lib/store";
 import {
   setEyebrows,
   setEyes,
-  // setBlush,
   setMouth,
   selectFumoFace,
   selectThreadColors,
@@ -17,14 +16,15 @@ export default function FaceSelector({ facePartCount, facePartSvgs }) {
   const threadColors = useAppSelector(selectThreadColors);
   const dispatch = useAppDispatch();
 
-  const mouthSvgParts = facePartSvgs.mouths
-    .find(({ id }) => id === fumoFace.mouth + 1)
-    .paths.reverse();
+  const mouthSvgParts = facePartSvgs.mouths.find(
+    ({ id }) => id === fumoFace.mouth + 1
+  ).paths;
   const eyeSvgData = facePartSvgs.eyes.find(
     ({ id }) => id === fumoFace.eyes.chosen[0] + 1
   );
-  const leftPupil = eyeSvgData.left.pupils.find(({ id }) => id === 1).paths;
-  const rightPupilStartClr = fumoFace.hasHeterochromia ? leftPupil.length : 0;
+  const leftPupil = eyeSvgData.left.pupils.find(
+    ({ id }) => id === fumoFace.pupil + 1
+  ).paths;
   const leftEyeClrIdx = fumoFace.hasDifferentEyeOutline
     ? leftPupil.length + (fumoFace.hasHeterochromia && leftPupil.length) + 1
     : -1;
@@ -67,7 +67,11 @@ export default function FaceSelector({ facePartCount, facePartSvgs }) {
 
         <polyline points={eyeSvgData.left.shine} stroke="white" />
         {leftPupil.map((points, i) => (
-          <polyline points={points} key={i} stroke={threadColors[i].color} />
+          <polyline
+            points={points}
+            key={i}
+            stroke={threadColors[i * (fumoFace.hasHeterochromia ? 2 : 1)].color}
+          />
         ))}
         {eyeSvgData.left.eyelashes
           .find(({ id }) => id === fumoFace.eyelash + 1)
@@ -83,12 +87,17 @@ export default function FaceSelector({ facePartCount, facePartSvgs }) {
 
         <polyline points={eyeSvgData.right.shine} stroke="white" />
         {eyeSvgData.right.pupils
-          .find(({ id }) => id === 1)
+          .find(({ id }) => id === fumoFace.pupil + 1)
           .paths.map((points, i) => (
             <polyline
               points={points}
               key={i}
-              stroke={threadColors[i + rightPupilStartClr].color}
+              stroke={
+                threadColors[
+                  i * (fumoFace.hasHeterochromia ? 2 : 1) +
+                    (fumoFace.hasHeterochromia && 1)
+                ].color
+              }
             />
           ))}
         {eyeSvgData.right.eyelashes
@@ -163,57 +172,6 @@ export default function FaceSelector({ facePartCount, facePartSvgs }) {
           </p>
         </div>
       </div>
-      {/* <OptionShift
-        options={facePartCount.eyebrows}
-        onChange={(eyebrows) => {
-          dispatch(setEyebrows({ eyebrows }));
-        }}
-        value={fumoFace.eyebrows}
-      >
-        <div className="eyebrows">{EYEBROWS[fumoFace.eyebrows]}</div>
-      </OptionShift>
-      <OptionShift
-        options={facePartCount.eyes}
-        onChange={(eyes) => {
-          dispatch(setEyes({ chosen: { 0: eyes } }));
-        }}
-        value={fumoFace.eyes.chosen[0]}
-      >
-        <div
-          style={{
-            "--clr-inn0": fumoFace.eyes.colors.inner[0],
-            "--clr-inn1": fumoFace.eyes.colors.inner[1],
-            "--clr-out0": fumoFace.eyes.colors.outline[0],
-            "--clr-out1": fumoFace.eyes.colors.outline[1],
-          }}
-          className={`eyes ${
-            fumoFace.hasHeterochromia ? "heterochromatic" : ""
-          } ${fumoFace.hasDifferentEyeOutline ? "diff-outline" : ""}`}
-        >
-          {EYES[fumoFace.eyes.chosen[0]][fumoFace.eyelash]}
-        </div>
-      </OptionShift>
-      {fumoFace.hasBlush && (
-        <OptionShift
-          options={facePartCount.blushes}
-          onChange={(blush) => {
-            dispatch(setBlush({ blush }));
-          }}
-          value={fumoFace.blush}
-        >
-          Blush {fumoFace.blush}
-        </OptionShift>
-      )}
-      <OptionShift
-        options={facePartCount.mouths}
-        onChange={(mouth) => {
-          dispatch(setMouth({ mouth }));
-        }}
-        value={fumoFace.mouth}
-        counterPos={"up"}
-      >
-        <div className="mouth">{MOUTHS[fumoFace.mouth]}</div>
-      </OptionShift> */}
     </div>
   );
 }
