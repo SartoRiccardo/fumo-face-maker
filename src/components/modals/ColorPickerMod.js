@@ -15,10 +15,10 @@ export default function ColorPickerMod({ show, onHide, onSelect }) {
           Just place the correct thread on your machine!
         </p>
         <hr />
-        {Object.keys(pesColors).map((clr) => (
+        {pesColors.map((clr) => (
           <ThreadColor
             key={clr}
-            color={pesColors[clr]}
+            color={clr}
             onClick={(_e) => {
               onSelect(clr);
               onHide(_e);
