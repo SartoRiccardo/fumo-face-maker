@@ -1,0 +1,7 @@
+services:
+  fumofacemaker_web:
+    build:
+      context: .
+    environment:
+      NODE_ENV: production
+      # NEXT_SHARP_PATH: /app/node_modules/sharp
