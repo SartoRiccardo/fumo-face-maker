@@ -3,7 +3,7 @@ import Button from "../usercontrols/Button";
 
 const NEWS_TEXT = [
   {
-    date: "Xth Jan 2025",
+    date: "16th Jan 2025",
     desc: (
       <ul>
         <li>You can now generate gradient eyes!</li>
