@@ -20,8 +20,8 @@
   transform: scale(1.5);
 }
 
-.face polyline {
-  stroke-width: 0.5px;
+.face path {
+  stroke-width: 5px;
   stroke-linejoin: bevel;
   fill: none;
 }

@@ -58,19 +58,18 @@ export default function FaceSelector({ facePartCount, facePartSvgs }) {
 
       <svg
         className={`col ${cssFaceSelector.face}`}
-        viewBox="-45 -35 90 65"
-        // style={{ border: "1px solid red" }}
+        viewBox="-450 -350 900 650"
       >
         {facePartSvgs.eyebrows
           .find(({ id }) => id === fumoFace.eyebrows + 1)
           .paths.map((points, i) => (
-            <polyline points={points} key={i} stroke="black" />
+            <path d={points} key={i} stroke="black" />
           ))}
 
-        <polyline points={eyeSvgData.left.shine} stroke="white" />
+        <path d={eyeSvgData.left.shine} stroke="white" />
         {leftPupil.map((points, i) => (
-          <polyline
-            points={points}
+          <path
+            d={points}
             key={i}
             stroke={threadColors[i * (fumoFace.hasHeterochromia ? 2 : 1)].color}
           />
@@ -78,8 +77,8 @@ export default function FaceSelector({ facePartCount, facePartSvgs }) {
         {eyeSvgData.left.eyelashes
           .find(({ id }) => id === fumoFace.eyelash + 1)
           .paths.map((points, i) => (
-            <polyline
-              points={points}
+            <path
+              d={points}
               key={i}
               stroke={
                 leftEyeClrIdx > 0 ? threadColors[leftEyeClrIdx].color : "black"
@@ -87,12 +86,12 @@ export default function FaceSelector({ facePartCount, facePartSvgs }) {
             />
           ))}
 
-        <polyline points={eyeSvgData.right.shine} stroke="white" />
+        <path d={eyeSvgData.right.shine} stroke="white" />
         {eyeSvgData.right.pupils
           .find(({ id }) => id === fumoFace.pupil + 1)
           .paths.map((points, i) => (
-            <polyline
-              points={points}
+            <path
+              d={points}
               key={i}
               stroke={
                 threadColors[
@@ -105,8 +104,8 @@ export default function FaceSelector({ facePartCount, facePartSvgs }) {
         {eyeSvgData.right.eyelashes
           .find(({ id }) => id === fumoFace.eyelash + 1)
           .paths.map((points, i) => (
-            <polyline
-              points={points}
+            <path
+              d={points}
               key={i}
               stroke={
                 leftEyeClrIdx > 0
@@ -119,8 +118,8 @@ export default function FaceSelector({ facePartCount, facePartSvgs }) {
           ))}
 
         {mouthSvgParts.map((points, i) => (
-          <polyline
-            points={points}
+          <path
+            d={points}
             key={i}
             stroke={
               threadColors[threadColors.length - mouthSvgParts.length + i].color

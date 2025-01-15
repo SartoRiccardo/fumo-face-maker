@@ -1,5 +1,5 @@
 export async function getFaceOptions() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/face/list`);
+  const response = await fetch(`${process.env.BACKEND}/face/list`);
   return await response.json();
 }
 
