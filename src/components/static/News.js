@@ -7,7 +7,7 @@ const NEWS_TEXT = [
     desc: (
       <ul>
         <li>You can now generate gradient eyes!</li>
-        <li>Added Eyebrow #14</li>
+        <li>Added Eyebrows #14-15</li>
         <li>Added Mouths #20-25</li>
         <li>
           Generated PES files are lighter, but harder to edit in PE Design
