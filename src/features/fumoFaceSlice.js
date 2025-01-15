@@ -3,9 +3,9 @@ import { createSelector, createSlice } from "@reduxjs/toolkit";
 const defaultEyes = {
   chosen: [0, 0],
   colors: {
-    inner: ["red", "blue"],
-    outline: ["darkred", "darkblue"],
-    gradient: ["magenta", "lightblue"],
+    inner: ["#ec0000", "#0f75ff"],
+    outline: ["#69260d", "#001cdf"],
+    gradient: ["#df00b8", "#0097df"],
   },
 };
 
@@ -16,15 +16,15 @@ export const fumoFaceSlice = createSlice({
     eyebrow2: 0,
     eyes: { ...defaultEyes },
     eyelash: 0,
-    blush: 0,
+    blush: 0, // Unused
     mouth: 0,
-    hasBlush: false,
+    pupil: 0,
+    hasBlush: false, // Unused
     hasHeterochromia: false,
     hasDifferentEyeOutline: false,
-    // hasGradient: false,
-    hasDifferentEyebrows: false,
-    hasDifferentEyes: false,
-    accessories: [],
+    hasDifferentEyebrows: false, // Unused
+    hasDifferentEyes: false, // Unused
+    accessories: [], // Unused
   },
   reducers: {
     setFace: (state, { payload }) => {
@@ -63,6 +63,9 @@ export const fumoFaceSlice = createSlice({
         }
       }
     },
+    setPupil: (state, { payload }) => {
+      state.pupil = payload.pupil;
+    },
     setBlush: (state, { payload }) => {
       state.blush = payload.blush;
     },
@@ -87,34 +90,22 @@ export const fumoFaceSlice = createSlice({
     setHasDifferentEyes: (state, { payload }) => {
       state.hasDifferentEyes = payload.hasDifferentEyes;
     },
-    setHasGradient: (state, { payload }) => {
-      state.hasGradient = payload.hasGradient;
-    },
     setEyelash: (state, { payload }) => {
       state.eyelash = payload.eyelash;
     },
   },
 });
 
-const blackColor = {
+const BLACK = {
   color: "black",
   description: <>The color of the eyebrows and mouth.</>,
 };
 
 const threadColorSelector = (fumoFace) => {
-  let threadColors = [
-    {
-      color: "white",
-      description: (
-        <>The color of the little eye shine on the top left of each eye.</>
-      ),
-    },
-  ];
+  let threadColors = [];
 
   if (fumoFace.hasHeterochromia) {
-    threadColors.splice(
-      0,
-      0,
+    threadColors.push(
       {
         key: "inner",
         idx: 0,
@@ -137,13 +128,53 @@ const threadColorSelector = (fumoFace) => {
       }
     );
   } else {
-    threadColors.splice(0, 0, {
+    threadColors.push({
       key: "inner",
       idx: 0,
       color: fumoFace.eyes.colors.inner[0],
-      description: <>The color of the eyes.</>,
+      description: "The color of the eyes.",
     });
   }
+
+  if (fumoFace.pupil > 0) {
+    if (fumoFace.hasHeterochromia) {
+      threadColors.push(
+        {
+          key: "gradient",
+          idx: 0,
+          color: fumoFace.eyes.colors.gradient[0],
+          description: (
+            <>
+              The color of the gradient of the <b>left</b> eye.
+            </>
+          ),
+        },
+        {
+          key: "gradient",
+          idx: 1,
+          color: fumoFace.eyes.colors.gradient[1],
+          description: (
+            <>
+              The color of the gradient of the <b>right</b> eye.
+            </>
+          ),
+        }
+      );
+    } else {
+      threadColors.push({
+        key: "gradient",
+        idx: 0,
+        color: fumoFace.eyes.colors.gradient[0],
+        description: "The color of the gradient part of the eyes.",
+      });
+    }
+  }
+
+  threadColors.push({
+    color: "white",
+    description:
+      "The color of the little eye shine on the top left of each eye.",
+  });
 
   if (fumoFace.hasDifferentEyeOutline) {
     if (fumoFace.hasHeterochromia) {
@@ -174,12 +205,12 @@ const threadColorSelector = (fumoFace) => {
         key: "outline",
         idx: 0,
         color: fumoFace.eyes.colors.outline[0],
-        description: <>The color of the outline of the eyes.</>,
+        description: "The color of the outline of the eyes.",
       });
     }
   }
 
-  threadColors.push(blackColor);
+  threadColors.push(BLACK);
 
   // Special multi-color mouths
   if (fumoFace.mouth === 3) {
@@ -192,27 +223,27 @@ const threadColorSelector = (fumoFace) => {
           </>
         ),
       },
-      blackColor
+      BLACK
     );
   } else if (fumoFace.mouth === 5) {
     threadColors.push(
       {
         color: "red",
-        description: <>The color of the tongue.</>,
+        description: "The color of the tongue.",
       },
-      blackColor
+      BLACK
     );
   } else if (fumoFace.mouth === 10) {
     threadColors.push(
       {
         color: "white",
-        description: <>The color of the mouth's teeth.</>,
+        description: "The color of the mouth's teeth.",
       },
       {
         color: "salmon",
-        description: <>The color inside the mouth.</>,
+        description: "The color inside the mouth.",
       },
-      blackColor
+      BLACK
     );
   }
 
@@ -220,12 +251,13 @@ const threadColorSelector = (fumoFace) => {
 };
 
 export const getFaceQuery = (fumoFace) => {
-  const { eyebrows, eyes, eyelash, mouth } = fumoFace;
+  const { eyebrows, eyes, eyelash, mouth, pupil } = fumoFace;
   const params = {
     eb: eyebrows,
     ey: eyes.chosen[0],
     el: eyelash,
     mt: mouth,
+    ir: pupil,
   };
   if (fumoFace.hasBlush) params.bl = fumoFace.blush;
   if (fumoFace.hasHeterochromia) {
@@ -239,6 +271,10 @@ export const getFaceQuery = (fumoFace) => {
     if (fumoFace.hasHeterochromia) params.ocl = eyes.colors.outline.join(",");
     else params.ocl = eyes.colors.outline[0];
   }
+  if (fumoFace.pupil > 0) {
+    if (fumoFace.hasHeterochromia) params.gcl = eyes.colors.gradient.join(",");
+    else params.gcl = eyes.colors.gradient[0];
+  }
   return new URLSearchParams(params).toString();
 };
 
@@ -246,36 +282,17 @@ export const getFaceFromQuery = (query, options) => {
   const face = {};
   face.eyes = { ...defaultEyes };
 
-  if (
-    "eb" in query &&
-    0 <= parseInt(query.eb) &&
-    parseInt(query.eb) < options.eyebrows
-  )
+  if (0 <= parseInt(query?.eb) && parseInt(query?.eb) < options.eyebrows)
     face.eyebrows = parseInt(query.eb);
-  if (
-    "ey" in query &&
-    0 <= parseInt(query.ey) &&
-    parseInt(query.ey) < options.eyes
-  ) {
+  if (0 <= parseInt(query?.ey) && parseInt(query?.ey) < options.eyes)
     face.eyes.chosen[0] = parseInt(query.ey);
-  }
-  if (
-    "el" in query &&
-    0 <= parseInt(query.el) &&
-    parseInt(query.el) < options.eyelashes
-  )
+  if (0 <= parseInt(query?.el) && parseInt(query?.el) < options.eyelashes)
     face.eyelash = parseInt(query.el);
-  if (
-    "mt" in query &&
-    0 <= parseInt(query.mt) &&
-    parseInt(query.mt) < options.mouths
-  )
+  if (0 <= parseInt(query?.mt) && parseInt(query?.mt) < options.mouths)
     face.mouth = parseInt(query.mt);
-  if (
-    "bl" in query &&
-    0 <= parseInt(query.bl) &&
-    parseInt(query.bl) < options.blushes
-  ) {
+  if (0 <= parseInt(query?.ir) && parseInt(query?.ir) < options.fills)
+    face.pupil = parseInt(query.ir);
+  if (0 <= parseInt(query?.bl) && parseInt(query?.bl) < options.blushes) {
     face.blush = parseInt(query.bl);
     face.hasBlush = true;
   }
@@ -292,6 +309,12 @@ export const getFaceFromQuery = (query, options) => {
     const outcols = query.ocl.split(",");
     for (let i = 0; i < Math.min(outcols.length, 2); i++) {
       face.eyes.colors.outline[i] = outcols[i];
+    }
+  }
+  if ("gcl" in query) {
+    const gradientcols = query.gcl.split(",");
+    for (let i = 0; i < Math.min(gradientcols.length, 2); i++) {
+      face.eyes.colors.gradient[i] = gradientcols[i];
     }
   }
   return face;
@@ -311,13 +334,13 @@ export const {
   setEyes,
   setBlush,
   setMouth,
+  setPupil,
   setHasDifferentEyebrows,
   setHasDifferentEyes,
   setOtherEyebrow,
   setOtherEye,
   setHasHeterochromia,
   setHasDifferentEyeOutline,
-  // setHasGradient,
   setEyelash,
 } = fumoFaceSlice.actions;
 export default fumoFaceSlice.reducer;

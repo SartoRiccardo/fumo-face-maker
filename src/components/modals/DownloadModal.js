@@ -5,6 +5,7 @@ import { useAppSelector } from "@/lib/store";
 import { selectFumoFace } from "@/features/fumoFaceSlice";
 import { useState } from "react";
 import download from "downloadjs";
+import { downloadFace } from "@/requests/backend";
 
 export default function DownloadModal({ show, onHide }) {
   const fumoFace = useAppSelector(selectFumoFace);
@@ -20,6 +21,7 @@ export default function DownloadModal({ show, onHide }) {
       eyelashes: fumoFace.eyelash + 1,
       eyebrows: fumoFace.eyebrows + 1,
       mouth: fumoFace.mouth + 1,
+      fill_no: fumoFace.pupil + 1,
       format,
     };
     let eyecols = [fumoFace.eyes.colors.inner[0]];
@@ -34,15 +36,17 @@ export default function DownloadModal({ show, onHide }) {
       if (fumoFace.hasDifferentEyeOutline)
         outcols.push(fumoFace.eyes.colors.outline[1]);
     }
+    if (fumoFace.pupil > 0) {
+      eyecols.push(fumoFace.eyes.colors.gradient[0]);
+      if (fumoFace.hasHeterochromia) {
+        eyecols.push(fumoFace.eyes.colors.gradient[1]);
+      }
+    }
     paramsDict.eyecols = eyecols.join(",");
     if (outcols.length) paramsDict.outcols = outcols.join(",");
 
-    const params = new URLSearchParams(paramsDict);
     try {
-      const response = await fetch(
-        process.env.NEXT_PUBLIC_BACKEND + "/face?" + params.toString()
-      );
-      const blob = await response.blob();
+      const blob = await downloadFace(paramsDict);
       download(blob, `${filename}.${format}`, "application/octet-stream");
     } catch (ex) {}
 
