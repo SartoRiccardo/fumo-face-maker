@@ -6,6 +6,8 @@ import { getFaceFromQuery } from "@/features/fumoFaceSlice";
 import FaceUrlChanger from "@/components/appcontrols/FaceUrlChanger";
 import { getFaceOptions } from "@/requests/backend";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home({ searchParams }) {
   const facePartInfo = await getFaceOptions();
   const fumoFace = getFaceFromQuery(searchParams, facePartInfo.count);
