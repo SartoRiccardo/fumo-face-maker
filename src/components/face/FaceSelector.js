@@ -85,6 +85,7 @@ export default function FaceSelector({ facePartCount, facePartSvgs }) {
               }
             />
           ))}
+        <path d={eyeSvgData.left.top} stroke="black" />
 
         <path d={eyeSvgData.right.shine} stroke="white" />
         {eyeSvgData.right.pupils
@@ -116,6 +117,7 @@ export default function FaceSelector({ facePartCount, facePartSvgs }) {
               }
             />
           ))}
+        <path d={eyeSvgData.right.top} stroke="black" />
 
         {mouthSvgParts.map((points, i) => (
           <path
