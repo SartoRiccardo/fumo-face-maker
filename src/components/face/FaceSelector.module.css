@@ -30,11 +30,22 @@
   animation-duration: 0s;
 }
 
+.mouth {
+  position: relative;
+  top: -1.5rem;
+}
+
 @keyframes fade {
   from {
     opacity: 1;
   }
   to {
     opacity: 0;
+  }
+}
+
+@media only screen and (max-width: 575.98px) {
+  .mouth {
+    top: -1rem;
   }
 }

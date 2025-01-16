@@ -16,7 +16,7 @@ export default function FaceSelector({ facePartCount, facePartSvgs }) {
   const fumoFace = useAppSelector(selectFumoFace);
   const threadColors = useAppSelector(selectThreadColors);
   const dispatch = useAppDispatch();
-  const isFirstRender = useIsFirstRender();
+  const isFirstRender = useIsFirstRender(500);
 
   const mouthSvgParts = facePartSvgs.mouths.find(
     ({ id }) => id === fumoFace.mouth + 1
@@ -170,7 +170,7 @@ export default function FaceSelector({ facePartCount, facePartSvgs }) {
             {fumoFace.eyes.chosen[0] + 1}/{facePartCount.eyes}
           </p>
           <p
-            className={`${atma.className} ${cssFaceSelector.counter} fs-3`}
+            className={`${atma.className} ${cssFaceSelector.counter} fs-3 ${cssFaceSelector.mouth}`}
             key={`mouth-${fumoFace.mouth}`}
           >
             {fumoFace.mouth + 1}/{facePartCount.mouths}
