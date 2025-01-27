@@ -1,5 +1,7 @@
 export async function getFaceOptions() {
-  const response = await fetch(`${process.env.BACKEND}/face/list`);
+  const response = await fetch(`${process.env.BACKEND}/face/list`, {
+    next: { revalidate: 3600 },
+  });
   return await response.json();
 }
 
