@@ -10,13 +10,30 @@ import {
 } from "@/features/fumoFaceSlice";
 import OptionShift from "../usercontrols/OptionShift";
 import { atma } from "@/lib/fonts";
-import { useIsFirstRender } from "@/utils/hooks";
+import { useState } from "react";
+import { useOnUpdate } from "@/utils/hooks";
 
 export default function FaceSelector({ facePartCount, facePartSvgs }) {
   const fumoFace = useAppSelector(selectFumoFace);
   const threadColors = useAppSelector(selectThreadColors);
   const dispatch = useAppDispatch();
-  const isFirstRender = useIsFirstRender(500);
+  const [touched, setTouched] = useState({
+    eyebrows: false,
+    eyes: false,
+    mouth: false,
+  });
+
+  useOnUpdate(() => {
+    if (!touched.mouth) setTouched({ ...touched, mouth: true });
+  }, [fumoFace.mouth]);
+
+  useOnUpdate(() => {
+    if (!touched.eyes) setTouched({ ...touched, eyes: true });
+  }, [fumoFace.eyes.chosen]);
+
+  useOnUpdate(() => {
+    if (!touched.eyebrows) setTouched({ ...touched, eyebrows: true });
+  }, [fumoFace.eyebrows]);
 
   const mouthSvgParts = facePartSvgs.mouths.find(
     ({ id }) => id === fumoFace.mouth + 1
@@ -153,26 +170,28 @@ export default function FaceSelector({ facePartCount, facePartSvgs }) {
         </div>
       </div>
 
-      <div
-        className={`${cssFaceSelector.label_container} ${
-          isFirstRender ? cssFaceSelector.no_animation : ""
-        }`}
-      >
+      <div className={cssFaceSelector.label_container}>
         <div className="h-100 py-2 d-flex flex-column justify-content-between">
           <p
-            className={`${atma.className} ${cssFaceSelector.counter} fs-3`}
+            className={`${atma.className} ${cssFaceSelector.counter} ${
+              touched.eyebrows ? cssFaceSelector.animated : ""
+            } fs-3`}
             key={`eyebrows-${fumoFace.eyebrows}`}
           >
             {fumoFace.eyebrows + 1}/{facePartCount.eyebrows}
           </p>
           <p
-            className={`${atma.className} ${cssFaceSelector.counter} fs-3`}
+            className={`${atma.className} ${cssFaceSelector.counter} ${
+              touched.eyes ? cssFaceSelector.animated : ""
+            } fs-3`}
             key={`eyes-${fumoFace.eyes.chosen[0]}`}
           >
             {fumoFace.eyes.chosen[0] + 1}/{facePartCount.eyes}
           </p>
           <p
-            className={`${atma.className} ${cssFaceSelector.counter} fs-3 ${cssFaceSelector.mouth}`}
+            className={`${atma.className} ${cssFaceSelector.counter} ${
+              touched.mouth ? cssFaceSelector.animated : ""
+            } fs-3 ${cssFaceSelector.mouth}`}
             key={`mouth-${fumoFace.mouth}`}
           >
             {fumoFace.mouth + 1}/{facePartCount.mouths}

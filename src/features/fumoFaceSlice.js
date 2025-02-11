@@ -280,7 +280,7 @@ export const getFaceQuery = (fumoFace) => {
 
 export const getFaceFromQuery = (query, options) => {
   const face = {};
-  face.eyes = { ...defaultEyes };
+  face.eyes = JSON.parse(JSON.stringify(defaultEyes));
 
   if (0 <= parseInt(query?.eb) && parseInt(query?.eb) < options.eyebrows)
     face.eyebrows = parseInt(query.eb);
