@@ -1,0 +1,4 @@
+<svg viewBox="0 0 100 100">
+  <polyline points="0,0 0,100 100,100 100,0"></polyline>
+  <polygon points="50,10 65,35 90,50 65,65 50,90 35,65 10,50 35,35" fill="lightgray"></polygon>
+</svg>

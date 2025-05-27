@@ -17,6 +17,8 @@ import Lash6 from "../../../public/images/eyelashes/lash-6.svg";
 import Lash7 from "../../../public/images/eyelashes/lash-7.svg";
 import Iris1 from "../../../public/images/irises/iris-1.svg";
 import Iris2 from "../../../public/images/irises/iris-2.svg";
+import Iris3 from "../../../public/images/irises/iris-3.svg";
+import Iris4 from "../../../public/images/irises/iris-4.svg";
 
 let LASH_W, LASH_H;
 LASH_W = LASH_H = "2rem";
@@ -74,6 +76,8 @@ export default function Content({ facePartInfo }) {
                   >
                     <Iris1 width={LASH_W} height={LASH_H} />
                     <Iris2 width={LASH_W} height={LASH_H} />
+                    <Iris3 width={LASH_W} height={LASH_H} />
+                    <Iris4 width={LASH_W} height={LASH_H} />
                   </ButtonSelector>
                 </Accordion.Body>
               </Accordion.Item>

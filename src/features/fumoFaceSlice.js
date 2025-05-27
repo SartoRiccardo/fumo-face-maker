@@ -245,6 +245,26 @@ const threadColorSelector = (fumoFace) => {
       },
       BLACK
     );
+  } else if (fumoFace.mouth === 24) {
+    threadColors.push(
+      {
+        color: "salmon",
+        description: "The color inside the mouth.",
+      },
+      BLACK
+    );
+  } else if (fumoFace.mouth === 25) {
+    threadColors.push(
+      {
+        color: "salmon",
+        description: "The color inside the mouth.",
+      },
+      {
+        color: "white",
+        description: "The color of the mouth's teeth.",
+      },
+      BLACK
+    );
   }
 
   return threadColors;
